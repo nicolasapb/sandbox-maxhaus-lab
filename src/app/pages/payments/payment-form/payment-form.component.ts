@@ -1,4 +1,4 @@
-import { Component, Injector } from '@angular/core';
+import { Component, Injector, OnInit } from '@angular/core';
 import { BaseResourceFormComponent } from 'src/app/shared/components/base-resource-forms/base-resource-forms.component';
 import { Payment } from '../shared/payment.model';
 import { PaymentService } from '../shared/payment.service';
@@ -10,10 +10,11 @@ import { faAngleDoubleLeft, faSave } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './payment-form.component.html',
   styleUrls: ['./payment-form.component.css']
 })
-export class PaymentFormComponent extends BaseResourceFormComponent<Payment> {
+export class PaymentFormComponent extends BaseResourceFormComponent<Payment> implements OnInit {
 
   public faAngleDoubleLeft = faAngleDoubleLeft;
   public faSave = faSave;
+  public types = [];
 
   constructor(
     protected paymentService: PaymentService,
@@ -21,6 +22,11 @@ export class PaymentFormComponent extends BaseResourceFormComponent<Payment> {
   ) {
     super(injector, new Payment(), paymentService, Payment.fromJson);
    }
+
+  ngOnInit(): void {
+    super.ngOnInit();
+    this.types = this.typeOptions;
+  }
 
    get typeOptions(): Array<any> {
     return Object.entries(Payment.types)

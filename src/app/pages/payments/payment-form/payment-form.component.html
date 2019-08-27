@@ -35,9 +35,18 @@
       <div class="form-row">
         <!-- type -->
         <div class="form-group col-md-2">  
-            <select name="type" id="type" formControlName="type" class="form-control">
+            <!-- <select name="type" id="type" formControlName="type" class="form-control">
                 <option *ngFor="let option of typeOptions" [value]="option.value">{{ option.text }}</option>
-            </select>             
+            </select>     -->
+
+          <mat-form-field class="w-100">
+            <mat-label>Tipo</mat-label>
+            <mat-select formControlName="type" name="type" required>
+              <mat-option *ngFor="let option of types" [value]="option.value">
+                {{option.text}}
+              </mat-option>
+            </mat-select>        
+          </mat-form-field>
           <app-form-field-error [form-control]="resourceForm.get('type')"></app-form-field-error>
         </div>                    
         
