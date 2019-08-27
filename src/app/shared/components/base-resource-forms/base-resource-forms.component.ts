@@ -1,6 +1,7 @@
 import { OnInit, AfterContentChecked, Injector } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { BaseResourceModel } from '../../models/base-resource.model';
 import { BaseResourceService } from '../../services/base-resource.service';
@@ -18,6 +19,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
   protected route: ActivatedRoute;
   protected router: Router;
   protected formBuilder: FormBuilder;
+  protected snackBar: MatSnackBar;
 
   constructor(
     protected injector: Injector,
@@ -28,6 +30,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
       this.route = this.injector.get(ActivatedRoute);
       this.router = this.injector.get(Router);
       this.formBuilder = this.injector.get(FormBuilder);
+      this.snackBar = this.injector.get(MatSnackBar);
   }
 
   ngOnInit() {
@@ -109,7 +112,9 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
   }
 
   protected actionsForSuccess(resource: T): void {
-
+    this.snackBar.open('Solicitação processada com sucesso', 'OK', {
+      duration: 2000,
+    });
     const baseComponentPath: string = this.route.snapshot.parent.url[0].path;
 
     this.router.navigateByUrl(baseComponentPath, {skipLocationChange: true})
@@ -119,6 +124,9 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
   }
 
   protected actionsForError(error: any): void {
+    this.snackBar.open('Ocorreu um erro ao processar a sua solicitação', 'OK', {
+      duration: 2000,
+    });
 
     this.submittingForm = false;
 
