@@ -1,1 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Table Customization */
+.mat-table {
+  width: 100%;
+}
+
+.mat-table td.mat-cell, .mat-table th.mat-header-cell {
+  padding-left: 0.25rem;
+}
+
+table.mat-thead-dark .mat-header-cell {
+  color: #fff;
+  background-color: #343a40;
+  border-color: #454d55;
+} 
+
+/* Table Fit */
+
+.table-fit td {
+  font-size: 75%;
+}
+
+.table-fit th.mat-header-cell {
+  font-size: 85%;
+}

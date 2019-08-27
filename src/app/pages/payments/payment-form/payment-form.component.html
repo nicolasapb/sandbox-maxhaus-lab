@@ -1,0 +1,126 @@
+<form [formGroup]="resourceForm" (submit)="submitForm()"> 
+  <mat-card>
+    <mat-card-header>
+        <app-page-header
+            class="w-100"
+            [page-title]="pageTitle"
+            button-text=""
+            button-link="/payments"
+            button-class="btn-dark"
+            [button-icon]="faAngleDoubleLeft"
+        >
+        </app-page-header> 
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <div class="form-row">
+        <!-- paid -->
+        <div class="form-group col-md-2">
+            <div class="btn-group">
+                <label 
+                  (click)="resourceForm.get('paid').setValue(true)" 
+                  [class.active]="resourceForm.get('paid').value == true" 
+                  class="btn btn-outline-secondary">Pago</label>
+                <label 
+                  (click)="resourceForm.get('paid').setValue(false)" 
+                  [class.active]="resourceForm.get('paid').value == false" 
+                  class="btn btn-outline-secondary">Pendente</label>
+            </div>
+            <app-form-field-error [form-control]="resourceForm.get('paid')"></app-form-field-error>
+          </div>        
+      </div>
+
+      <div class="form-row">
+        <!-- type -->
+        <div class="form-group col-md-2">  
+            <select name="type" id="type" formControlName="type" class="form-control">
+                <option *ngFor="let option of typeOptions" [value]="option.value">{{ option.text }}</option>
+            </select>             
+          <app-form-field-error [form-control]="resourceForm.get('type')"></app-form-field-error>
+        </div>                    
+        
+        <!-- recipient -->
+        <div class="form-group col-md-5">
+          <mat-form-field class="w-100">
+            <input matInput placeholder="Beneficiário" required formControlName="recipient" type="text" >  
+          </mat-form-field>  
+          <app-form-field-error [form-control]="resourceForm.get('recipient')"></app-form-field-error>
+        </div> 
+
+        <!-- dueDate -->
+        <div class="form-group col-md-3">
+          <mat-form-field class="w-100"> 
+            <input matInput [matDatepicker]="dueDate" placeholder="Data de Vencimento" required formControlName="dueDate"> 
+            <mat-datepicker-toggle matSuffix [for]="dueDate"></mat-datepicker-toggle>
+            <mat-datepicker #dueDate></mat-datepicker>
+          </mat-form-field> 
+          <app-form-field-error [form-control]="resourceForm.get('dueDate')"></app-form-field-error>
+        </div>                    
+        
+        <!-- amount -->
+        <div class="form-group col-md-2">
+          <mat-form-field class="w-100">
+            <input matInput placeholder="Valor" required formControlName="amount" type="number">
+            <!-- <input matInput placeholder="Valor" required formControlName="amount" class="form-control" 
+              [value]="resourceForm.get('amount').value | currency:'BRL':'symbol':'0.0-2':'pt'"> -->
+          </mat-form-field>            
+          <app-form-field-error [form-control]="resourceForm.get('amount')"></app-form-field-error>
+        </div>
+      </div>
+      
+      <div class="form-row" *ngIf="resourceForm.get('paid').value">      
+        <!-- payDate -->
+        <div class="form-group col-md-3">
+          <mat-form-field class="w-100" > 
+            <input matInput [matDatepicker]="payDate" placeholder="Data de Pagamento" required formControlName="payDate"> 
+            <mat-datepicker-toggle matSuffix [for]="payDate"></mat-datepicker-toggle>
+            <mat-datepicker #payDate></mat-datepicker>    
+          </mat-form-field>  
+          <app-form-field-error [form-control]="resourceForm.get('payDate')"></app-form-field-error>
+        </div>
+
+        <!-- payAmount -->
+        <div class="form-group col-md-2">
+          <mat-form-field class="w-100">
+            <input matInput placeholder="Valor Pago" required type="number" formControlName="payAmount">
+          </mat-form-field>  
+          <app-form-field-error [form-control]="resourceForm.get('payAmount')"></app-form-field-error>
+        </div>
+
+        <!-- auth -->
+        <div class="form-group col-md-7">
+          <mat-form-field class="w-100">
+            <input matInput placeholder="Autenticação" required formControlName="auth" maxlength="25">
+          </mat-form-field>  
+          <app-form-field-error [form-control]="resourceForm.get('auth')"></app-form-field-error>
+        </div>
+      </div>
+
+      <div class="form-row" *ngIf="resourceForm.get('paid').value">        
+        <!-- account -->
+        <div class="form-group col-md-6">
+          <mat-form-field class="w-100">
+            <input matInput placeholder="Conta Destino" required formControlName="account" [value]="resourceForm.get('account').value | account" maxlength="15">
+          </mat-form-field>  
+          <app-form-field-error [form-control]="resourceForm.get('account')"></app-form-field-error>
+        </div>
+
+        <!-- cnpj -->
+        <div class="form-group col-md-6">
+          <mat-form-field class="w-100"> 
+            <input matInput placeholder="CNPJ" required formControlName="cnpj" [value]="resourceForm.get('cnpj').value | cnpj" maxlength="18">
+          </mat-form-field>  
+          <app-form-field-error [form-control]="resourceForm.get('cnpj')"></app-form-field-error>
+        </div>
+      </div>
+
+    </mat-card-content>
+
+    <mat-card-actions class="text-right">
+      <button type="submit" class="btn btn-warning btn-lg" [disabled]="submittingForm || resourceForm.invalid">
+        <fa-icon [icon]="faSave"></fa-icon>&nbsp;Salvar
+    </button>
+    </mat-card-actions>
+  </mat-card>
+</form>
