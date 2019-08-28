@@ -1,21 +1,20 @@
-import { OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { OnInit, TemplateRef, ViewChild, AfterViewInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
-import { BaseResourceModel } from '../../models/base-resource.model';
-import { BaseResourceService } from '../../services/base-resource.service';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
-import { ComponentType } from '@angular/cdk/portal';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 
-export abstract class BaseResourceList<T extends BaseResourceModel> implements OnInit {
+import { BaseResourceModel } from '../../models/base-resource.model';
+import { BaseResourceService } from '../../services/base-resource.service';
+
+export abstract class BaseResourceList<T extends BaseResourceModel> implements OnInit, AfterViewInit {
 
   // resources: T[] = [];
-  resources: MatTableDataSource<T>;
+  resources: MatTableDataSource<T> = new MatTableDataSource<T>();
 
-  @ViewChild(MatPaginator, {static: true}) paginator?: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, {static: false}) paginator?: MatPaginator;
+  @ViewChild(MatSort, {static: false}) sort?: MatSort;
 
   constructor(
       protected resourceService: BaseResourceService<T>,
@@ -29,12 +28,19 @@ export abstract class BaseResourceList<T extends BaseResourceModel> implements O
     this.resourceService.getAll()
       .subscribe({
           next: resources => {
-            this.resources = new MatTableDataSource<T>(resources);
+            this.resources.data = resources;
             this.resources.paginator = this.paginator;
             this.resources.sort = this.sort;
           },
           error: error => this.actionsForError('erro ao carregar a lista', error)
       });
+  }
+
+  ngAfterViewInit(): void {
+    // If the user changes the sort order, reset back to the first page.
+    if (this.sort) {
+      this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+    }
   }
 
   openDialog(resource?: T): void {

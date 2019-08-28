@@ -27,3 +27,7 @@ table.mat-thead-dark .mat-header-cell {
 .table-fit th.mat-header-cell {
   font-size: 85%;
 }
+
+.badge {
+  font-weight: 500;
+}
