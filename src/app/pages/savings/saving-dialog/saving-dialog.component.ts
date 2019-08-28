@@ -30,23 +30,29 @@ export class SavingDialogComponent extends BaseResourceDialogComponent<Saving> i
   }
 
   get typeOptions(): Array<any> {
-    return Object.entries(Payment.types)
+    return Object.entries(Saving.types)
       .map(([value, text]) => {
         return { text, value };
       });
   }
 
   protected buildResourceForm(): void {
-    this.resourceForm = this.formBuilder.group({});
+    this.resourceForm = this.formBuilder.group({
+      id: [null],
+      type: ['PP', [Validators.required]],
+      amount: [null, [Validators.required]],
+      date: [null, [Validators.required]],
+      simulation: [false, [Validators.required]]
+   });
   }
 
   protected creationPageTitle(): string {
-    return 'Cadastro de novo Pagamento';
+    return 'Cadastro de nova Economia';
   }
 
   protected editionPageTitle(): string {
     const resourceId = this.resource.id || '...';
-    return `Editando o Pagamento ${resourceId}`;
+    return `Editando a economia ${resourceId}`;
   }
 
 }

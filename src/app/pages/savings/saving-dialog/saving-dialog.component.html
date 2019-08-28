@@ -1,1 +1,72 @@
-<p>saving-dialog works!</p>
+<mat-dialog-content class="p-0">
+<form [formGroup]="resourceForm" (submit)="submitForm()"> 
+  <mat-card>
+    <mat-card-header>
+        <app-page-header class="w-100" [page-title]="pageTitle" [show-button]="false"></app-page-header> 
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <div class="form-row">
+        <!-- Simulation -->
+
+        <div class="form-group col-md-4">
+            <div class="btn-group w-100">
+                <label 
+                  (click)="resourceForm.get('simulation').setValue(false)" 
+                  [class.active]="resourceForm.get('simulation').value == false" 
+                  class="btn btn-outline-secondary">Real</label>
+                <label 
+                  (click)="resourceForm.get('simulation').setValue(true)" 
+                  [class.active]="resourceForm.get('simulation').value == true" 
+                  class="btn btn-outline-secondary">Previsão</label>
+            </div>
+            <app-form-field-error [form-control]="resourceForm.get('simulation')"></app-form-field-error>
+          </div>        
+      </div>
+
+      <div class="form-row">
+        <!-- type -->
+        <div class="form-group col-md-4">  
+          <mat-form-field class="w-100">
+            <mat-label>Tipo</mat-label>
+            <mat-select formControlName="type" name="type" required>
+              <mat-option *ngFor="let option of types" [value]="option.value">
+                {{option.text}}
+              </mat-option>
+            </mat-select>        
+          </mat-form-field>
+          <app-form-field-error [form-control]="resourceForm.get('type')"></app-form-field-error>
+        </div>                    
+        
+        <!-- date -->
+        <div class="form-group col-md-4">
+          <mat-form-field class="w-100"> 
+            <input matInput [matDatepicker]="date" placeholder="Data" required formControlName="date"> 
+            <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+            <mat-datepicker #date></mat-datepicker>
+          </mat-form-field> 
+          <app-form-field-error [form-control]="resourceForm.get('date')"></app-form-field-error>
+        </div>                    
+        
+        <!-- amount -->
+        <div class="form-group col-md-4" >
+          <mat-form-field class="w-100" >
+            <input matInput placeholder="Valor" required formControlName="amount" type="number">
+            <!-- <input matInput placeholder="Valor" required formControlName="amount" class="form-control" 
+              [value]="resourceForm.get('amount').value | currency:'BRL':'symbol':'0.0-2':'pt'"> -->
+          </mat-form-field>            
+          <app-form-field-error [form-control]="resourceForm.get('amount')"></app-form-field-error>
+        </div>
+      </div>
+
+    </mat-card-content>
+
+    <mat-card-actions class="text-right">
+      <button type="submit" class="btn btn-warning btn-lg" [disabled]="submittingForm || resourceForm.invalid">
+        <fa-icon [icon]="faSave"></fa-icon>&nbsp;Salvar
+    </button>
+    </mat-card-actions>
+  </mat-card>
+</form>
+</mat-dialog-content>
