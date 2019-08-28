@@ -1,5 +1,6 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { Payment } from './pages/payments/shared/payment.model';
+import { Saving } from './pages/savings/shared/saving.model';
 
 export class InMemoryDatabase implements InMemoryDbService {
 
@@ -21,7 +22,33 @@ export class InMemoryDatabase implements InMemoryDbService {
             {id: 13, recipient: 'MAXCASA XXVII EMP IMOB LTDA', dueDate: new Date(2019, 1, 15), amount: 2531.91, payDate: new Date(2019, 1, 1), payAmount: 2531.91, auth: '36E624C8933E65414ADAA1B', account: '03500000207601', cnpj: '13070428000152', paid: true, type: '1'} as Payment
         ];
 
-        return { payments };
+        const savings: Saving[] = [
+            {id: 1, type: 'PP', amount: 5208.54, simulation: false } as Saving,
+            {id: 2, type: 'PP', amount: 4000.00, simulation: false } as Saving,
+            {id: 3, type: 'PP', amount: 2800.00, simulation: false } as Saving,
+            {id: 4, type: 'PP', amount: 200.00, simulation: false } as Saving,
+            {id: 5, type: 'PP', amount: 2000.00, simulation: false } as Saving,
+            {id: 6, type: 'PP', amount: 14.92, simulation: false } as Saving,
+            {id: 7, type: 'PP', amount: -300.00, simulation: false } as Saving,
+            {id: 8, type: 'PP', amount: 30.44, simulation: false } as Saving,
+            {id: 9, type: 'PP', amount: 14.97, simulation: false } as Saving,
+            {id: 10, type: 'PP', amount: 2300.00, simulation: false } as Saving,
+            {id: 11, type: 'PP', amount: 16.76, simulation: false } as Saving,
+            {id: 12, type: 'PP', amount: 10.11, simulation: false } as Saving,
+            {id: 13, type: 'PP', amount: 4700.00, simulation: false } as Saving,
+            {id: 14, type: 'PP', amount: 15.03, simulation: false } as Saving,
+            {id: 15, type: 'PP', amount: 25.33, simulation: false } as Saving,
+            {id: 16, type: 'PP', amount: 2300.00, simulation: false } as Saving,
+            {id: 17, type: 'PP', amount: 20.19, simulation: false } as Saving,
+            {id: 18, type: 'PP', amount: 10000.00, simulation: false } as Saving,
+            {id: 19, type: 'PP', amount: 57.96, simulation: false } as Saving,
+            {id: 20, type: 'PP', amount: 1585.75, simulation: false } as Saving,
+        ];
+
+        return {
+            payments,
+            savings
+        };
     }
 
     genId(collection: any[]): number {
@@ -31,6 +58,26 @@ export class InMemoryDatabase implements InMemoryDbService {
 }
 
 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 
 
 
