@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 
 import { faEdit, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { BaseResourceList } from 'src/app/shared/components/base-resource-list/base-resource-list.component';
@@ -13,7 +13,7 @@ import { SavingDialogComponent } from '../saving-dialog/saving-dialog.component'
   templateUrl: './saving-list.component.html',
   styleUrls: ['./saving-list.component.css']
 })
-export class SavingListComponent extends BaseResourceList<Saving> {
+export class SavingListComponent extends BaseResourceList<Saving> implements AfterViewInit {
 
   public cols = ['type', 'simulation', 'edit', 'date', 'amount'];
   public faPlus = faPlus;
@@ -27,6 +27,12 @@ export class SavingListComponent extends BaseResourceList<Saving> {
     super(savingService, snackBar, dialog, SavingDialogComponent, Saving.fromJson);
    }
 
+   ngAfterViewInit(): void {
+     super.ngAfterViewInit();
+     this.buildRealTotal();
+     this.buildSimTotal();
+   }
+
    get typeOptions(): Array<any> {
     return Object.entries(Saving.types)
       .map(([value, text]) => {
@@ -37,6 +43,14 @@ export class SavingListComponent extends BaseResourceList<Saving> {
   getTypeText(type: string): string {
     const found = this.typeOptions.find( check => check.value === type);
     return found.text;
+  }
+
+  protected buildRealTotal(): void {
+
+  }
+
+  protected buildSimTotal(): void {
+    
   }
 
 }
