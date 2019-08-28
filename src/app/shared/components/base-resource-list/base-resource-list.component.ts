@@ -29,7 +29,7 @@ export abstract class BaseResourceList<T extends BaseResourceModel> implements O
             this.resources = new MatTableDataSource<T>(resources);
             this.resources.paginator = this.paginator;
           },
-          error: error => this.handleServiceError('erro ao carregar a lista', error)
+          error: error => this.actionsForError('erro ao carregar a lista', error)
       });
   }
 
@@ -62,11 +62,8 @@ export abstract class BaseResourceList<T extends BaseResourceModel> implements O
   deleteResource(resource: T): void {
     this.resourceService.delete(resource.id)
       .subscribe({
-        next: _ =>{
-          const filter = this.resources.data.filter(element => element !== resource );
-          this.resources = new MatTableDataSource<T>(filter);
-        },
-        error: error => this.handleServiceError(`erro ao deletar o item: ${resource.id}`, error)
+        next: _ => this.actionsForSuccess('item eliminado com sucesso'),
+        error: error => this.actionsForError(`erro ao deletar o item: ${resource.id}`, error)
       });
   }
 
@@ -77,8 +74,8 @@ export abstract class BaseResourceList<T extends BaseResourceModel> implements O
   protected createResourceOnDialogMode(resource: T): void {
     this.resourceService.create(resource)
       .subscribe({
-        next: _ => this.actionsForSuccess(),
-        error: error => this.actionsForError(error)
+        next: _ => this.actionsForSuccess('item criado com sucesso'),
+        error: error => this.actionsForError('erro ao criar item', error)
       });
   }
 
@@ -86,28 +83,23 @@ export abstract class BaseResourceList<T extends BaseResourceModel> implements O
 
     this.resourceService.update(resource)
       .subscribe({
-        next: _ => this.actionsForSuccess(),
-        error: error => this.actionsForError(error)
+        next: _ => this.actionsForSuccess('item atualizado com sucesso'),
+        error: error => this.actionsForError(`erro ao atualizar o item: ${resource.id}`, error)
       });
   }
 
-  protected actionsForSuccess(): void {
-    this.snackBar.open('Solicitação processada com sucesso', 'OK', {
-      duration: 2000,
+  protected actionsForSuccess(message: string): void {
+    this.snackBar.open(message, '', {
+      duration: 3000,
     });
     this.ngOnInit();
   }
 
-  protected actionsForError(error: any): void {
-    this.snackBar.open('Ocorreu um erro ao processar a sua solicitação', 'OK', {
-      duration: 2000,
+  protected actionsForError(message: string, error: any): void {
+    this.snackBar.open(message, '', {
+      duration: 3000,
     });
     console.error(error);
-  }
-
-  protected handleServiceError(operation: string, error: any): void {
-    alert(operation);
-    console.log(error);
   }
 
 }

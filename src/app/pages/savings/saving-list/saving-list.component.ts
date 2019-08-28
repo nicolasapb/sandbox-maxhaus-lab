@@ -4,6 +4,8 @@ import { faEdit, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { BaseResourceList } from 'src/app/shared/components/base-resource-list/base-resource-list.component';
 import { Saving } from '../shared/saving.model';
 import { SavingService } from '../shared/saving.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-saving-list',
@@ -17,8 +19,11 @@ export class SavingListComponent extends BaseResourceList<Saving> {
   public faTrash = faTrash;
   public faEdit = faEdit;
 
-  constructor(protected savingService: SavingService) {
-    super(savingService);
+  constructor(
+    protected savingService: SavingService,
+    protected snackBar: MatSnackBar,
+    protected dialog: MatDialog) {
+    super(savingService, snackBar);
    }
 
    get typeOptions(): Array<any> {
