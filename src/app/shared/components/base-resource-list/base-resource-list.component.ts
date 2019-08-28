@@ -38,14 +38,14 @@ export abstract class BaseResourceList<T extends BaseResourceModel> implements O
 
     const dialogRef = this.dialog.open(this.componentOrTemplateRef, dialogConfig);
 
-    dialogRef.afterClosed().subscribe(resourceReturned => {
-      if (!resourceReturned) { return; }
+    dialogRef.afterClosed().subscribe(resourceFormValue => {
+      if (!resourceFormValue) { return; }
 
-      if (this.resources.find( found => resourceReturned.id === found.id )) {
-        const modifiedResource: T = this.jsonDataToResourceFn(resourceReturned);
+      if (this.resources.find( found => resourceFormValue.id === found.id )) {
+        const modifiedResource: T = this.jsonDataToResourceFn(resourceFormValue);
         this.updateResourceOnDialogMode(modifiedResource);
       } else {
-        const newResource: T = this.jsonDataToResourceFn(resourceReturned);
+        const newResource: T = this.jsonDataToResourceFn(resourceFormValue);
         this.createResourceOnDialogMode(newResource);
       }
 
