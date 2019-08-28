@@ -1,0 +1,16 @@
+.mat-column-edit .edit-buttons {
+  display: inline-flex; 
+}
+ 
+.edit-buttons {
+  visibility: hidden; 
+  opacity: 0.4;
+}
+
+tr.mat-row:hover .edit-buttons {       
+  visibility: visible;
+}
+
+td.mat-column-recipient {
+  font-weight: bold;
+}
