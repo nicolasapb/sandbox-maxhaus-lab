@@ -8,6 +8,7 @@
     <td mat-cell *matCellDef="let resource"> {{resource.recipient}} </td>
     <td mat-footer-cell *matFooterCellDef>
       <button class="btn btn-small p-0" routerLink="new"><fa-icon [icon]="faPlus"></fa-icon></button>
+      <button class="btn btn-small p-0" (click)="openDialog()"><fa-icon [icon]="faPlus"></fa-icon></button>
     </td>
   </ng-container>
   
@@ -18,7 +19,8 @@
           <span class="edit-buttons">
               <button class="btn btn-small p-1 text-danger"(click)="deleteResource(resource)"><fa-icon [icon]="faTrash"></fa-icon></button>
               <button class="btn btn-small p-1" [routerLink]="[resource.id, 'edit']"><fa-icon [icon]="faEdit"></fa-icon></button> 
-          </span>                              
+              <button class="btn btn-small p-1" (click)="openDialog(resource)"><fa-icon [icon]="faEdit"></fa-icon></button> 
+            </span>                              
       </td>
       <td mat-footer-cell *matFooterCellDef></td>
   </ng-container> 

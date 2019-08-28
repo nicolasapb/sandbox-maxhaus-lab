@@ -3,6 +3,9 @@ import { BaseResourceList } from 'src/app/shared/components/base-resource-list/b
 import { Payment } from '../shared/payment.model';
 import { PaymentService } from '../shared/payment.service';
 import { faPlus, faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { PaymentDialogComponent } from '../payment-dialog/payment-dialog.component';
 
 @Component({
   selector: 'app-payment-list',
@@ -16,8 +19,11 @@ export class PaymentListComponent extends BaseResourceList<Payment> {
   public faTrash = faTrash;
   public faEdit = faEdit;
 
-  constructor(protected paymentService: PaymentService) {
-    super(paymentService);
+  constructor(
+    protected paymentService: PaymentService,
+    protected snackBar: MatSnackBar,
+    protected dialog: MatDialog) {
+    super(paymentService, snackBar, dialog, PaymentDialogComponent, Payment.fromJson);
   }
 
 }
