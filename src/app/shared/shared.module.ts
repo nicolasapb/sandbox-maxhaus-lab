@@ -11,6 +11,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatDialogModule} from '@angular/material/dialog';
 
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
@@ -37,7 +38,8 @@ import { FormFieldErrorComponent } from './components/form-field-error/form-fiel
     MatDatepickerModule,
     MatNativeDateModule,
     MatSnackBarModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatDialogModule,
   ],
   exports: [
     // Shared Modules
@@ -54,6 +56,7 @@ import { FormFieldErrorComponent } from './components/form-field-error/form-fiel
     MatNativeDateModule,
     MatSnackBarModule,
     MatButtonToggleModule,
+    MatDialogModule,
 
     // Shared Components
     PageHeaderComponent,
