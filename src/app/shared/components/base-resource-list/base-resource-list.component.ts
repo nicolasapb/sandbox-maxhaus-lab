@@ -1,15 +1,19 @@
-import { OnInit, TemplateRef } from '@angular/core';
+import { OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { BaseResourceModel } from '../../models/base-resource.model';
 import { BaseResourceService } from '../../services/base-resource.service';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { ComponentType } from '@angular/cdk/portal';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 export abstract class BaseResourceList<T extends BaseResourceModel> implements OnInit {
 
-  resources: T[] = [];
+  // resources: T[] = [];
+  resources: MatTableDataSource<T>;
 
+  @ViewChild(MatPaginator, {static: true}) paginator?: MatPaginator;
   constructor(
       protected resourceService: BaseResourceService<T>,
       protected snackBar?: MatSnackBar,
@@ -21,7 +25,10 @@ export abstract class BaseResourceList<T extends BaseResourceModel> implements O
   ngOnInit() {
     this.resourceService.getAll()
       .subscribe({
-          next: resources => this.resources = resources,
+          next: resources => {
+            this.resources = new MatTableDataSource<T>(resources);
+            this.resources.paginator = this.paginator;
+          },
           error: error => this.handleServiceError('erro ao carregar a lista', error)
       });
   }
@@ -41,7 +48,7 @@ export abstract class BaseResourceList<T extends BaseResourceModel> implements O
     dialogRef.afterClosed().subscribe(resourceFormValue => {
       if (!resourceFormValue) { return; }
 
-      if (this.resources.find( found => resourceFormValue.id === found.id )) {
+      if (this.resources.data.find( found => resourceFormValue.id === found.id )) {
         const modifiedResource: T = this.jsonDataToResourceFn(resourceFormValue);
         this.updateResourceOnDialogMode(modifiedResource);
       } else {
@@ -55,7 +62,10 @@ export abstract class BaseResourceList<T extends BaseResourceModel> implements O
   deleteResource(resource: T): void {
     this.resourceService.delete(resource.id)
       .subscribe({
-        next: _ => this.resources = this.resources.filter(element => element !== resource ),
+        next: _ =>{
+          const filter = this.resources.data.filter(element => element !== resource );
+          this.resources = new MatTableDataSource<T>(filter);
+        },
         error: error => this.handleServiceError(`erro ao deletar o item: ${resource.id}`, error)
       });
   }
@@ -92,6 +102,7 @@ export abstract class BaseResourceList<T extends BaseResourceModel> implements O
     this.snackBar.open('Ocorreu um erro ao processar a sua solicitação', 'OK', {
       duration: 2000,
     });
+    console.error(error);
   }
 
   protected handleServiceError(operation: string, error: any): void {

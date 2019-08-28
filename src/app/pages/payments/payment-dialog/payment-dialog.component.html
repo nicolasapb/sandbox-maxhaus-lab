@@ -58,8 +58,8 @@
         </div>                    
         
         <!-- amount -->
-        <div class="form-group col-md-2">
-          <mat-form-field class="w-100">
+        <div class="form-group col-md-2" >
+          <mat-form-field class="w-100" >
             <input matInput placeholder="Valor" required formControlName="amount" type="number">
             <!-- <input matInput placeholder="Valor" required formControlName="amount" class="form-control" 
               [value]="resourceForm.get('amount').value | currency:'BRL':'symbol':'0.0-2':'pt'"> -->
@@ -71,7 +71,7 @@
       <div class="form-row" *ngIf="resourceForm.get('paid').value">      
         <!-- payDate -->
         <div class="form-group col-md-3">
-          <mat-form-field class="w-100" > 
+          <mat-form-field class="w-100"> 
             <input matInput [matDatepicker]="payDate" placeholder="Data de Pagamento" required formControlName="payDate"> 
             <mat-datepicker-toggle matSuffix [for]="payDate"></mat-datepicker-toggle>
             <mat-datepicker #payDate></mat-datepicker>    

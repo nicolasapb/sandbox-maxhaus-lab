@@ -14,7 +14,7 @@ export class Saving extends BaseResourceModel {
   }
 
   static types = {
-      PP: 'Poupânça',
+      PP: 'Poupança',
       PPR: 'PPR',
       FGTS: 'FGTS',
       CDB: 'CDB',

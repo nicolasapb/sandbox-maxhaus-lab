@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { faEdit, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { BaseResourceList } from 'src/app/shared/components/base-resource-list/base-resource-list.component';
@@ -20,5 +20,17 @@ export class SavingListComponent extends BaseResourceList<Saving> {
   constructor(protected savingService: SavingService) {
     super(savingService);
    }
+
+   get typeOptions(): Array<any> {
+    return Object.entries(Saving.types)
+      .map(([value, text]) => {
+        return { text, value };
+      });
+  }
+
+  getTypeText(type: string): string {
+    const found = this.typeOptions.find( check => check.value === type);
+    return found.text;
+  }
 
 }
