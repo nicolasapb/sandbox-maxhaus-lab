@@ -67,10 +67,7 @@ export abstract class BaseResourceList<T extends BaseResourceModel> implements O
   protected createResourceOnDialogMode(resource: T): void {
     this.resourceService.create(resource)
       .subscribe({
-        next: newResource => {
-          this.resources.push(newResource);
-          this.actionsForSuccess();
-        },
+        next: _ => this.actionsForSuccess(),
         error: error => this.actionsForError(error)
       });
   }
@@ -79,10 +76,7 @@ export abstract class BaseResourceList<T extends BaseResourceModel> implements O
 
     this.resourceService.update(resource)
       .subscribe({
-        next: newResource => {
-          // atualizar o item da lista
-          this.actionsForSuccess();
-        },
+        next: _ => this.actionsForSuccess(),
         error: error => this.actionsForError(error)
       });
   }
@@ -91,6 +85,7 @@ export abstract class BaseResourceList<T extends BaseResourceModel> implements O
     this.snackBar.open('Solicitação processada com sucesso', 'OK', {
       duration: 2000,
     });
+    this.ngOnInit();
   }
 
   protected actionsForError(error: any): void {
