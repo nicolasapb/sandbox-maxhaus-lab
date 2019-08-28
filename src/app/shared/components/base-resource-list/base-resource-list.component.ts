@@ -7,6 +7,7 @@ import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { ComponentType } from '@angular/cdk/portal';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 export abstract class BaseResourceList<T extends BaseResourceModel> implements OnInit {
 
@@ -14,6 +15,8 @@ export abstract class BaseResourceList<T extends BaseResourceModel> implements O
   resources: MatTableDataSource<T>;
 
   @ViewChild(MatPaginator, {static: true}) paginator?: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+
   constructor(
       protected resourceService: BaseResourceService<T>,
       protected snackBar?: MatSnackBar,
@@ -28,6 +31,7 @@ export abstract class BaseResourceList<T extends BaseResourceModel> implements O
           next: resources => {
             this.resources = new MatTableDataSource<T>(resources);
             this.resources.paginator = this.paginator;
+            this.resources.sort = this.sort;
           },
           error: error => this.actionsForError('erro ao carregar a lista', error)
       });

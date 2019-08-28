@@ -13,6 +13,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
 
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
@@ -42,6 +43,7 @@ import { FormFieldErrorComponent } from './components/form-field-error/form-fiel
     MatButtonToggleModule,
     MatDialogModule,
     MatPaginatorModule,
+    MatSortModule,
   ],
   exports: [
     // Shared Modules
@@ -60,7 +62,8 @@ import { FormFieldErrorComponent } from './components/form-field-error/form-fiel
     MatButtonToggleModule,
     MatDialogModule,
     MatPaginatorModule,
-
+    MatSortModule,
+    
     // Shared Components
     PageHeaderComponent,
     FormFieldErrorComponent,

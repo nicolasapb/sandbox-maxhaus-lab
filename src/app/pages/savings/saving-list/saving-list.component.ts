@@ -6,6 +6,7 @@ import { Saving } from '../shared/saving.model';
 import { SavingService } from '../shared/saving.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
+import { SavingDialogComponent } from '../saving-dialog/saving-dialog.component';
 
 @Component({
   selector: 'app-saving-list',
@@ -14,7 +15,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class SavingListComponent extends BaseResourceList<Saving> {
 
-  public cols = ['type', 'edit', 'amount'];
+  public cols = ['type', 'simulation', 'edit', 'date', 'amount'];
   public faPlus = faPlus;
   public faTrash = faTrash;
   public faEdit = faEdit;
@@ -23,7 +24,7 @@ export class SavingListComponent extends BaseResourceList<Saving> {
     protected savingService: SavingService,
     protected snackBar: MatSnackBar,
     protected dialog: MatDialog) {
-    super(savingService, snackBar);
+    super(savingService, snackBar, dialog, SavingDialogComponent, Saving.fromJson);
    }
 
    get typeOptions(): Array<any> {

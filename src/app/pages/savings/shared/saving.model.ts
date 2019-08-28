@@ -5,6 +5,7 @@ export class Saving extends BaseResourceModel {
     public id?: number,
     public type?: string,
     public amount?: number,
+    public date?: Date,
     public simulation?: boolean) {
       super();
     }

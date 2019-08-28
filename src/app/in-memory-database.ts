@@ -23,26 +23,36 @@ export class InMemoryDatabase implements InMemoryDbService {
         ];
 
         const savings: Saving[] = [
-            {id: 1, type: 'PP', amount: 5208.54, simulation: false } as Saving,
-            {id: 2, type: 'PP', amount: 4000.00, simulation: false } as Saving,
-            {id: 3, type: 'PP', amount: 2800.00, simulation: false } as Saving,
-            {id: 4, type: 'PP', amount: 200.00, simulation: false } as Saving,
-            {id: 5, type: 'PP', amount: 2000.00, simulation: false } as Saving,
-            {id: 6, type: 'PP', amount: 14.92, simulation: false } as Saving,
-            {id: 7, type: 'PP', amount: -300.00, simulation: false } as Saving,
-            {id: 8, type: 'PP', amount: 30.44, simulation: false } as Saving,
-            {id: 9, type: 'PP', amount: 14.97, simulation: false } as Saving,
-            {id: 10, type: 'PP', amount: 2300.00, simulation: false } as Saving,
-            {id: 11, type: 'PP', amount: 16.76, simulation: false } as Saving,
-            {id: 12, type: 'PP', amount: 10.11, simulation: false } as Saving,
-            {id: 13, type: 'PP', amount: 4700.00, simulation: false } as Saving,
-            {id: 14, type: 'PP', amount: 15.03, simulation: false } as Saving,
-            {id: 15, type: 'PP', amount: 25.33, simulation: false } as Saving,
-            {id: 16, type: 'PP', amount: 2300.00, simulation: false } as Saving,
-            {id: 17, type: 'PP', amount: 20.19, simulation: false } as Saving,
-            {id: 18, type: 'PP', amount: 10000.00, simulation: false } as Saving,
-            {id: 19, type: 'PP', amount: 57.96, simulation: false } as Saving,
-            {id: 20, type: 'PP', amount: 1585.75, simulation: false } as Saving,
+            {id: 1,  type: 'PP', amount: 5208.54, date: new Date(2019, 0, 1), simulation: false } as Saving,
+            {id: 2,  type: 'PP', amount: 4000.00, date: new Date(2019, 1, 1), simulation: false } as Saving,
+            {id: 3,  type: 'PP', amount: 2800.00, date: new Date(2019, 2, 1), simulation: false } as Saving,
+            {id: 4,  type: 'PP', amount: 200.00, date: new Date(2019, 3, 1), simulation: false } as Saving,
+            {id: 5,  type: 'PP', amount: 2000.00, date: new Date(2019, 3, 1), simulation: false } as Saving,
+            {id: 6,  type: 'PP', amount: 14.92, date: new Date(2019, 3, 1), simulation: false } as Saving,
+            {id: 7,  type: 'PP', amount: -300.00, date: new Date(2019, 3, 1), simulation: false } as Saving,
+            {id: 8,  type: 'PP', amount: 30.44, date: new Date(2019, 4, 1), simulation: false } as Saving,
+            {id: 9,  type: 'PP', amount: 14.97, date: new Date(2019, 4, 1), simulation: false } as Saving,
+            {id: 10, type: 'PP', amount: 2300.00, date: new Date(2019, 4, 1), simulation: false } as Saving,
+            {id: 11, type: 'PP', amount: 16.76, date: new Date(2019, 4, 1), simulation: false } as Saving,
+            {id: 12, type: 'PP', amount: 10.11, date: new Date(2019, 4, 1), simulation: false } as Saving,
+            {id: 13, type: 'PP', amount: 4700.00, date: new Date(2019, 5, 1), simulation: false } as Saving,
+            {id: 14, type: 'PP', amount: 15.03, date: new Date(2019, 5, 1), simulation: false } as Saving,
+            {id: 15, type: 'PP', amount: 25.33, date: new Date(2019, 5, 1), simulation: false } as Saving,
+            {id: 16, type: 'PP', amount: 2300.00, date: new Date(2019, 5, 1), simulation: false } as Saving,
+            {id: 17, type: 'PP', amount: 20.19, date: new Date(2019, 6, 1), simulation: false } as Saving,
+            {id: 18, type: 'PP', amount: 10000.00, date: new Date(2019, 6, 1), simulation: false } as Saving,
+            {id: 19, type: 'PP', amount: 57.96, date: new Date(2019, 6, 1), simulation: false } as Saving,
+            {id: 20, type: 'PP', amount: 1585.75, date: new Date(2019, 6, 1), simulation: false } as Saving,
+            {id: 21, type: 'CAR', amount: 50000, date: new Date(2019, 7, 15), simulation: false } as Saving,
+            {id: 22, type: 'CAR', amount: 50000, date: new Date(2020, 0, 1), simulation: true } as Saving,
+            {id: 23, type: 'FGTS', amount: 55180.34, date: new Date(2019, 7, 1), simulation: false} as Saving,
+            {id: 24, type: 'FGTS', amount: 60000.00, date: new Date(2020, 0, 1), simulation: true} as Saving,
+            {id: 25, type: 'CDB', amount: 35811.54, date: new Date(2019, 7, 1), simulation: false} as Saving,
+            {id: 26, type: 'CDB', amount: 36000.00, date: new Date(2020, 0, 1), simulation: true} as Saving,
+            {id: 27, type: 'TES', amount: 25461.10, date: new Date(2019, 7, 1), simulation: false} as Saving,
+            {id: 28, type: 'TES', amount: 25500.00, date: new Date(2020, 0, 1), simulation: true} as Saving,
+            {id: 29, type: 'PREV', amount: 9300.42, date: new Date(2020, 0, 1), simulation: true} as Saving,
+            {id: 30, type: 'PP', amount: 20888.58, date: new Date(2020, 0 ,1), simulation: true} as Saving
         ];
 
         return {
@@ -56,104 +66,3 @@ export class InMemoryDatabase implements InMemoryDbService {
     }
 
 }
-
-
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
-
-
-
-
-
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
