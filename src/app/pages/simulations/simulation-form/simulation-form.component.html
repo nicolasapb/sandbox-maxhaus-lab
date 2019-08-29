@@ -1,2 +1,17 @@
-<p>simulation-form works!</p>
-<pre>{{ simulation | json }}</pre>
+<div *ngIf="simulation">
+    <mat-card>
+        <button type="button" class="close" aria-label="Fechar" (click)="simulation = null">
+            <span aria-hidden="true">&times;</span>
+        </button>        
+        <mat-card-header>
+            <mat-card-title>{{pageTitle}}</mat-card-title>
+            <mat-card-subtitle>subtitle</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <pre>{{ simulation | json }}</pre>
+        </mat-card-content>
+        <mat-card-actions>
+            <button class="btn btn-small btn-warning">Salvar</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
