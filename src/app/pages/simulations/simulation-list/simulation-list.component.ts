@@ -41,6 +41,8 @@ export class SimulationListComponent extends BaseResourceList<Simulation> implem
   public totalCompostion: number;
   public compostion: string;
   public simulation: Simulation;
+  public contractValue = 510381.00;
+  public contractEntry = 118000.00;
 
   constructor(
     protected simulationService: SimulationService,
@@ -80,9 +82,9 @@ export class SimulationListComponent extends BaseResourceList<Simulation> implem
   }
 
   newSimulation(): void {
-    const entry = this.totalCompostion + 118000;
-    const entryPct = entry / 510381;
-    const funding = 510381 - entry;
+    const entry = this.totalCompostion + this.contractEntry;
+    const entryPct = entry / this.contractValue;
+    const funding = this.contractValue - entry;
     const fundingPct = 1 - entryPct;
     const renovation = this.prevTotal - this.totalCompostion;
     this.simulation = new Simulation(null, this.compostion, this.totalCompostion, entry, entryPct, funding, fundingPct, renovation);

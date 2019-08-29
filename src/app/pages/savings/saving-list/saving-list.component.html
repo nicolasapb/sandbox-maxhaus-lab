@@ -1,112 +1,112 @@
 <div class="clearfix">
-<div class="float-left w-100 col-md-5">
-<app-page-header page-title="Economias" [show-button]="false"></app-page-header>
+  <div class="float-left w-100 col-md-5">
+  <app-page-header page-title="Economias" [show-button]="false"></app-page-header>
 
-<div class="mb-5 w-75">
+    <div class="mb-5 w-75">
 
-  <table mat-table #table [dataSource]="resources" class="table-hover mat-thead-dark" matSort>
-    
-    <!-- application Type -->
-    <ng-container matColumnDef="type">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Aplicação </th>
-      <td mat-cell *matCellDef="let resource"> 
-        {{ getTypeText(resource.type) }}
-      </td>
-      <td mat-footer-cell *matFooterCellDef >
-        <button class="btn btn-small p-0 float-left" (click)="openDialog()"><fa-icon [icon]="faPlus"></fa-icon></button>
-      </td>
-    </ng-container>
-
-    <!-- simulaiton or not -->
-    <ng-container matColumnDef="simulation">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo </th>
-      <td mat-cell *matCellDef="let resource">  <span class="badge badge-pill" [class.badge-warning]="!resource.simulation" [class.badge-danger]="resource.simulation" >{{ resource.simText }}</span> </td>
-      <td mat-footer-cell *matFooterCellDef></td>
-    </ng-container>    
-    
-    <!-- Botoes edit -->
-    <ng-container matColumnDef="edit">
-        <th mat-header-cell *matHeaderCellDef ></th>
-        <td mat-cell *matCellDef="let resource">
-          <span class="edit-buttons">
-            <button class="btn btn-small p-1 text-danger"(click)="deleteResource(resource)"><fa-icon [icon]="faTrash"></fa-icon></button>
-                <button class="btn btn-small p-1" (click)="openDialog(resource)"><fa-icon [icon]="faEdit"></fa-icon></button> 
-              </span>                              
-            </td>
-        <td mat-footer-cell *matFooterCellDef></td>
-      </ng-container> 
-
-      <!-- Date -->
-      <ng-container matColumnDef="date">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Data </th>
-        <td mat-cell *matCellDef="let resource"> {{resource.date | date:"dd/MM/yyyy"}} </td>
-        <td mat-footer-cell *matFooterCellDef></td>
-      </ng-container>      
+    <table mat-table #table [dataSource]="resources" class="table-hover mat-thead-dark" matSort>
       
-      <!-- Valor -->
-      <ng-container matColumnDef="amount">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Valor </th>
-      <td mat-cell *matCellDef="let resource"> {{ resource.amount | currency:'BRL':'symbol':'0.0-2':'pt' }} </td>
-      <td mat-footer-cell *matFooterCellDef></td>
-    </ng-container>
-    
-    <tr mat-header-row *matHeaderRowDef="cols"></tr>
-    <tr mat-row *matRowDef="let row; columns: cols;"></tr>
-    <tr mat-footer-row *matFooterRowDef="cols"></tr>
-  </table>
-  <div>
-    <mat-paginator [pageSizeOptions]="[10, 15, 20]" showFirstLastButtons></mat-paginator>
-  </div>
-</div>
-</div>
+      <!-- application Type -->
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Aplicação </th>
+        <td mat-cell *matCellDef="let resource"> 
+          {{ getTypeText(resource.type) }}
+        </td>
+        <td mat-footer-cell *matFooterCellDef >
+          <button class="btn btn-small p-0 float-left" (click)="openDialog()"><fa-icon [icon]="faPlus"></fa-icon></button>
+        </td>
+      </ng-container>
 
-<div class="float-left w-100 col-md-7">
-  
-  <mat-card> 
-      <mat-card-title><app-page-header page-title="Totais" [show-button]="false"></app-page-header></mat-card-title> 
-    
-    <mat-card-content>
+      <!-- simulaiton or not -->
+      <ng-container matColumnDef="simulation">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo </th>
+        <td mat-cell *matCellDef="let resource">  <span class="badge badge-pill" [class.badge-warning]="!resource.simulation" [class.badge-danger]="resource.simulation" >{{ resource.simText }}</span> </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>    
       
-      <div class="clearfix">
-        <!-- Real Totals-->
-        <div class="float-left w-100 border-left col-md-6">
-          <h5>Real</h5>
-          <div>
-            <mat-list>
-              <mat-list-item *ngFor="let entry of realTotalByType">
-                <span class="font-weight-bold">{{ entry.type }}</span>:&nbsp;<span>{{ entry.amount | currency:'BRL':'symbol':'0.0-2':'pt' }}</span>
-              </mat-list-item>
-              <mat-divider></mat-divider>
-              <div class="mt-2">
-                <mat-list-item>
-                  <span class="font-weight-bold">{{ realTotal | currency:'BRL':'symbol':'0.0-2':'pt' }}</span> 
-                </mat-list-item>
-              </div>              
-            </mat-list>
-          </div>
-        </div>
+      <!-- Botoes edit -->
+      <ng-container matColumnDef="edit">
+          <th mat-header-cell *matHeaderCellDef ></th>
+          <td mat-cell *matCellDef="let resource">
+            <span class="edit-buttons">
+              <button class="btn btn-small p-1 text-danger"(click)="deleteResource(resource)"><fa-icon [icon]="faTrash"></fa-icon></button>
+                  <button class="btn btn-small p-1" (click)="openDialog(resource)"><fa-icon [icon]="faEdit"></fa-icon></button> 
+                </span>                              
+              </td>
+          <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container> 
+
+        <!-- Date -->
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Data </th>
+          <td mat-cell *matCellDef="let resource"> {{resource.date | date:"dd/MM/yyyy"}} </td>
+          <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>      
         
-        <!-- Previsão Totals -->
-        <div class="float-left w-100 border-left col-md-6">
-          <h5>Previsão</h5>
-          <div>
-            <mat-list>
-              <mat-list-item *ngFor="let entry of prevTotalByType">
-                <span class="font-weight-bold">{{ entry.type }}</span>:&nbsp;<span>{{ entry.amount | currency:'BRL':'symbol':'0.0-2':'pt' }}</span>
-              </mat-list-item>
-              <mat-divider></mat-divider>
-              <div class="mt-2">
-                <mat-list-item>
-                  <span class="font-weight-bold">{{ prevTotal | currency:'BRL':'symbol':'0.0-2':'pt' }}</span> 
+        <!-- Valor -->
+        <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Valor </th>
+        <td mat-cell *matCellDef="let resource"> {{ resource.amount | currency:'BRL':'symbol':'0.2-2':'pt' }} </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+      
+      <tr mat-header-row *matHeaderRowDef="cols"></tr>
+      <tr mat-row *matRowDef="let row; columns: cols;"></tr>
+      <tr mat-footer-row *matFooterRowDef="cols"></tr>
+    </table>
+    <div>
+      <mat-paginator [pageSizeOptions]="[10, 15, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+    </div>
+  </div>
+
+  <div class="float-left w-100 col-md-7">
+    
+    <mat-card> 
+        <mat-card-title><app-page-header page-title="Totais" [show-button]="false"></app-page-header></mat-card-title> 
+      
+      <mat-card-content>
+        
+        <div class="clearfix">
+          <!-- Real Totals-->
+          <div class="float-left w-100 border-left col-md-6">
+            <h5>Real</h5>
+            <div>
+              <mat-list>
+                <mat-list-item *ngFor="let entry of realTotalByType">
+                  <span class="font-weight-bold">{{ entry.type }}</span>:&nbsp;<span>{{ entry.amount | currency:'BRL':'symbol':'0.2-2':'pt' }}</span>
                 </mat-list-item>
-              </div>   
-            </mat-list>
+                <mat-divider></mat-divider>
+                <div class="mt-2">
+                  <mat-list-item>
+                    <span class="font-weight-bold">{{ realTotal | currency:'BRL':'symbol':'0.2-2':'pt' }}</span> 
+                  </mat-list-item>
+                </div>              
+              </mat-list>
+            </div>
+          </div>
+          
+          <!-- Previsão Totals -->
+          <div class="float-left w-100 border-left col-md-6">
+            <h5>Previsão</h5>
+            <div>
+              <mat-list>
+                <mat-list-item *ngFor="let entry of prevTotalByType">
+                  <span class="font-weight-bold">{{ entry.type }}</span>:&nbsp;<span>{{ entry.amount | currency:'BRL':'symbol':'0.2-2':'pt' }}</span>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <div class="mt-2">
+                  <mat-list-item>
+                    <span class="font-weight-bold">{{ prevTotal | currency:'BRL':'symbol':'0.2-2':'pt' }}</span> 
+                  </mat-list-item>
+                </div>   
+              </mat-list>
+            </div>
           </div>
         </div>
-      </div>
-    
-    </mat-card-content>
-  </mat-card>
-</div>
+      
+      </mat-card-content>
+    </mat-card>
+  </div>
 
 </div>
