@@ -11,7 +11,7 @@ import { BaseResourceService } from '../../services/base-resource.service';
 export abstract class BaseResourceList<T extends BaseResourceModel> implements OnInit, AfterViewInit {
 
   // resources: T[] = [];
-  resources: MatTableDataSource<T> = new MatTableDataSource<T>();
+  resources: MatTableDataSource<T> ;
 
   @ViewChild(MatPaginator, {static: false}) paginator?: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort?: MatSort;
@@ -28,9 +28,10 @@ export abstract class BaseResourceList<T extends BaseResourceModel> implements O
     this.resourceService.getAll()
       .subscribe({
           next: resources => {
-            this.resources.data = resources;
+            this.resources = new MatTableDataSource<T>(resources);
             this.resources.paginator = this.paginator;
             this.resources.sort = this.sort;
+            this.onInitSubscribe(); // method provided to be used on inheriting components so the subscribe callback can be acessed
           },
           error: error => this.actionsForError('erro ao carregar a lista', error)
       });
@@ -111,5 +112,7 @@ export abstract class BaseResourceList<T extends BaseResourceModel> implements O
     });
     console.error(error);
   }
+
+  protected onInitSubscribe(): void {}
 
 }

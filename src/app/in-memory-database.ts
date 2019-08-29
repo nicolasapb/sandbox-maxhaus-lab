@@ -52,7 +52,8 @@ export class InMemoryDatabase implements InMemoryDbService {
             {id: 27, type: 'TES', amount: 25461.10, date: new Date(2019, 7, 1), simulation: false} as Saving,
             {id: 28, type: 'TES', amount: 25500.00, date: new Date(2020, 0, 1), simulation: true} as Saving,
             {id: 29, type: 'PREV', amount: 9300.42, date: new Date(2020, 0, 1), simulation: true} as Saving,
-            {id: 30, type: 'PP', amount: 20888.58, date: new Date(2020, 0 ,1), simulation: true} as Saving
+            {id: 29, type: 'PREV', amount: 9300.42, date: new Date(2019, 0, 1), simulation: false} as Saving,
+            {id: 30, type: 'PP', amount: 20888.58, date: new Date(2020, 0 , 1), simulation: true} as Saving
         ];
 
         return {

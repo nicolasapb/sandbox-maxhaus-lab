@@ -14,6 +14,8 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
+import {MatListModule} from '@angular/material/list';
+import {MatDividerModule} from '@angular/material/divider';
 
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
@@ -44,6 +46,8 @@ import { FormFieldErrorComponent } from './components/form-field-error/form-fiel
     MatDialogModule,
     MatPaginatorModule,
     MatSortModule,
+    MatListModule,
+    MatDividerModule
   ],
   exports: [
     // Shared Modules
@@ -63,7 +67,9 @@ import { FormFieldErrorComponent } from './components/form-field-error/form-fiel
     MatDialogModule,
     MatPaginatorModule,
     MatSortModule,
-    
+    MatListModule,
+    MatDividerModule,
+
     // Shared Components
     PageHeaderComponent,
     FormFieldErrorComponent,
