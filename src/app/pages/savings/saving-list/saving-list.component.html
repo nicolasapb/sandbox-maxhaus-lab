@@ -68,6 +68,7 @@
     <mat-card-content>
       
       <div class="clearfix">
+        <!-- Real Totals-->
         <div class="float-left w-100 border-left col-md-6">
           <h5>Real</h5>
           <div>
@@ -75,13 +76,17 @@
               <mat-list-item *ngFor="let entry of realTotalByType">
                 <span class="font-weight-bold">{{ entry.type }}</span>:&nbsp;<span>{{ entry.amount | currency:'BRL':'symbol':'0.0-2':'pt' }}</span>
               </mat-list-item>
+              <mat-divider></mat-divider>
+              <div class="mt-2">
+                <mat-list-item>
+                  <span class="font-weight-bold">{{ realTotal | currency:'BRL':'symbol':'0.0-2':'pt' }}</span> 
+                </mat-list-item>
+              </div>              
             </mat-list>
           </div>
-          <mat-divider></mat-divider>
-          <div class="mt-2">
-            <h5><span class="font-weight-bold">Total: </span> {{ realTotal | currency:'BRL':'symbol':'0.0-2':'pt' }}</h5>
-          </div>
         </div>
+        
+        <!-- Previsão Totals -->
         <div class="float-left w-100 border-left col-md-6">
           <h5>Previsão</h5>
           <div>
@@ -89,11 +94,13 @@
               <mat-list-item *ngFor="let entry of prevTotalByType">
                 <span class="font-weight-bold">{{ entry.type }}</span>:&nbsp;<span>{{ entry.amount | currency:'BRL':'symbol':'0.0-2':'pt' }}</span>
               </mat-list-item>
+              <mat-divider></mat-divider>
+              <div class="mt-2">
+                <mat-list-item>
+                  <span class="font-weight-bold">{{ prevTotal | currency:'BRL':'symbol':'0.0-2':'pt' }}</span> 
+                </mat-list-item>
+              </div>   
             </mat-list>
-          </div>
-          <mat-divider></mat-divider>
-          <div class="mt-2">
-            <h5><span class="font-weight-bold">Total: </span> {{ prevTotal | currency:'BRL':'symbol':'0.0-2':'pt' }}</h5>
           </div>
         </div>
       </div>
