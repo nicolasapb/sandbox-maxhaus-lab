@@ -1,6 +1,7 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { Payment } from './pages/payments/shared/payment.model';
 import { Saving } from './pages/savings/shared/saving.model';
+import { Simulation } from './pages/simulations/shared/simulation.model';
 
 export class InMemoryDatabase implements InMemoryDbService {
 
@@ -52,13 +53,35 @@ export class InMemoryDatabase implements InMemoryDbService {
             {id: 27, type: 'TES', amount: 25461.10, date: new Date(2019, 7, 1), simulation: false} as Saving,
             {id: 28, type: 'TES', amount: 25500.00, date: new Date(2020, 0, 1), simulation: true} as Saving,
             {id: 29, type: 'PREV', amount: 9300.42, date: new Date(2020, 0, 1), simulation: true} as Saving,
-            {id: 29, type: 'PREV', amount: 9300.42, date: new Date(2019, 0, 1), simulation: false} as Saving,
-            {id: 30, type: 'PP', amount: 20888.58, date: new Date(2020, 0 , 1), simulation: true} as Saving
+            {id: 30, type: 'PREV', amount: 9300.42, date: new Date(2019, 0, 1), simulation: false} as Saving,
+            {id: 31, type: 'PP', amount: 20888.58, date: new Date(2020, 0 , 1), simulation: true} as Saving,
+            {id: 32, type: 'PPR', amount: 0, date: new Date(2019, 11 , 20), simulation: false} as Saving,
+            {id: 33, type: 'PPR', amount: 16000.00, date: new Date(2020, 0 , 1), simulation: true} as Saving
+        ];
+
+        const simulations: Simulation[] = [
+            {
+              id: 1,
+              composition: 'FULL',
+              total: 217689.00,
+              entry: 335689.00,
+              entryPct: 0.6577,
+              funding: 174692.00,
+              fundingPct: 0.3423,
+              renovation: 0,
+              installment: 1679.74,
+              fundFees: false,
+              composeIncome: true,
+              interest: 7.99,
+              term: 35,
+              simDate: new Date(2019, 6, 9)
+            } as Simulation
         ];
 
         return {
             payments,
-            savings
+            savings,
+            simulations
         };
     }
 
