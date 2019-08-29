@@ -39,6 +39,8 @@ export class SimulationListComponent extends BaseResourceList<Simulation> implem
   public prevTotalByType: TotalAmount[] = [];
   public prevTotal: number;
   public totalCompostion: number;
+  public compostion: string;
+  public simulation: Simulation;
 
   constructor(
     protected simulationService: SimulationService,
@@ -53,10 +55,12 @@ export class SimulationListComponent extends BaseResourceList<Simulation> implem
   }
 
   onSelection(selectedValues: Array<MatListOption>) {
-    console.log(selectedValues);
     this.totalCompostion = 0;
-    selectedValues.forEach( selection => this.totalCompostion += selection.value.amount);
-    console.log(this.totalCompostion);
+    this.compostion = '';
+    selectedValues.forEach( selection => {
+      this.compostion = this.compostion.concat( this.compostion === '' ? '' : ' + ', selection.value.type);
+      this.totalCompostion += selection.value.amount;
+    });
   }
 
   get typeOptions(): Array<any> {
@@ -69,6 +73,19 @@ export class SimulationListComponent extends BaseResourceList<Simulation> implem
   getTypeText(type: string): string {
     const found = this.typeOptions.find( check => check.value === type);
     return found.text;
+  }
+
+  editSimulation(simulation: Simulation): void {
+    this.simulation = simulation;
+  }
+
+  newSimulation(): void {
+    const entry = this.totalCompostion + 118000;
+    const entryPct = entry / 510381;
+    const funding = 510381 - entry;
+    const fundingPct = 1 - entryPct;
+    const renovation = this.prevTotal - this.totalCompostion;
+    this.simulation = new Simulation(null, this.compostion, this.totalCompostion, entry, entryPct, funding, fundingPct, renovation);
   }
 
   protected getSavingsPrevision(): void {
