@@ -1,17 +1,16 @@
-<div *ngIf="simulation">
+<div *ngIf="showForm">
     <mat-card>
-        <button type="button" class="close" aria-label="Fechar" (click)="simulation = null">
+        <button type="button" class="close" aria-label="Fechar" (click)="close()">
             <span aria-hidden="true">&times;</span>
         </button>        
-        <mat-card-header>
-            <mat-card-title>{{pageTitle}}</mat-card-title>
-            <mat-card-subtitle>subtitle</mat-card-subtitle>
+        <mat-card-header > 
+            <mat-card-title class="w-100"><app-page-header [page-title]="pageTitle" [show-button]="false"></app-page-header></mat-card-title>
         </mat-card-header>
         <mat-card-content>
             <pre>{{ simulation | json }}</pre>
         </mat-card-content>
         <mat-card-actions>
-            <button class="btn btn-small btn-warning">Salvar</button>
+            <button class="btn btn-small btn-warning"><fa-icon [icon]="faSave"></fa-icon>&nbsp;Salvar</button>
         </mat-card-actions>
     </mat-card>
 </div>

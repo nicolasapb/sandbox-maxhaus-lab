@@ -28,6 +28,10 @@ export class PaymentDialogComponent extends BaseResourceDialogComponent<Payment>
     this.types = this.typeOptions;
   }
 
+  close(): void {
+    this.onNoClick();
+  }
+
   get typeOptions(): Array<any> {
     return Object.entries(Payment.types)
       .map(([value, text]) => {

@@ -51,14 +51,14 @@ export abstract class BaseResourceDialogComponent<T extends BaseResourceModel> i
     }
 
     protected setCurrentaction(): void {
-        this.resource ? this.currentAction = 'edit' : this.currentAction = 'new';
+      this.resource ? this.currentAction = 'edit' : this.currentAction = 'new';
     }
 
     protected setPageTitle(): void {
       if (this.currentAction === 'new') {
-      this.pageTitle = this.creationPageTitle();
+        this.pageTitle = this.creationPageTitle();
       } else {
-      this.pageTitle = this.editionPageTitle();
+        this.pageTitle = this.editionPageTitle();
       }
     }
 

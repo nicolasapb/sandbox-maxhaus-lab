@@ -1,6 +1,9 @@
 <mat-dialog-content class="p-0">
 <form [formGroup]="resourceForm" (submit)="submitForm()"> 
-  <mat-card>
+  <mat-card>     
+    <button type="button" class="close" aria-label="Fechar" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+    </button>         
     <mat-card-header>
         <app-page-header class="w-100" [page-title]="pageTitle" [show-button]="false"></app-page-header> 
     </mat-card-header>
@@ -53,8 +56,6 @@
         <div class="form-group col-md-4" >
           <mat-form-field class="w-100" >
             <input matInput placeholder="Valor" required formControlName="amount" type="number">
-            <!-- <input matInput placeholder="Valor" required formControlName="amount" class="form-control" 
-              [value]="resourceForm.get('amount').value | currency:'BRL':'symbol':'0.2-2':'pt'"> -->
           </mat-form-field>            
           <app-form-field-error [form-control]="resourceForm.get('amount')"></app-form-field-error>
         </div>
@@ -65,7 +66,7 @@
     <mat-card-actions class="text-right">
       <button type="submit" class="btn btn-warning btn-lg" [disabled]="submittingForm || resourceForm.invalid">
         <fa-icon [icon]="faSave"></fa-icon>&nbsp;Salvar
-    </button>
+      </button>
     </mat-card-actions>
   </mat-card>
 </form>

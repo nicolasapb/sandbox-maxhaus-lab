@@ -29,6 +29,10 @@ export class SavingDialogComponent extends BaseResourceDialogComponent<Saving> i
     this.types = this.typeOptions;
   }
 
+  close(): void {
+    this.onNoClick();
+  }
+
   get typeOptions(): Array<any> {
     return Object.entries(Saving.types)
       .map(([value, text]) => {

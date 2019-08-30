@@ -1,6 +1,9 @@
 <mat-dialog-content class="p-0">
 <form [formGroup]="resourceForm" (submit)="submitForm()"> 
   <mat-card>
+    <button type="button" class="close" aria-label="Fechar" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+    </button>           
     <mat-card-header>
         <app-page-header class="w-100" [page-title]="pageTitle" [show-button]="false"></app-page-header> 
     </mat-card-header>

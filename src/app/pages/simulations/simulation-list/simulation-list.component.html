@@ -42,12 +42,16 @@
 </div>
 
 <div class="mb-5 clearfix">
-  <button class="btn btn-lg btn-warning" (click)="newSimulation()"><fa-icon [icon]="faPlus"></fa-icon>&nbsp;nova simulação</button>
+  <button 
+    class="btn btn-lg btn-warning" 
+    (click)="newSimulation()" 
+    [disabled]="selections.selectedOptions.selected.length > 0 ? false : true">
+    <fa-icon [icon]="faPlus"></fa-icon>&nbsp;nova simulação</button>
 </div>
 
-<div class="mb-5">
-  <app-simulation-form class="mb-5 w-auto" [simulation]="simulation"></app-simulation-form>
-</div>
+<!-- <div class="mb-5">
+  <app-simulation-form *ngIf="simulation" class="mb-5 w-auto" [simulation]="simulation" [showForm]="showForm"></app-simulation-form>
+</div> -->
 
 <app-page-header page-title="Simulações" [show-button]="false"></app-page-header>
 
@@ -66,7 +70,7 @@
         <td mat-cell *matCellDef="let resource">
             <span class="edit-buttons">
                 <button class="btn btn-small p-1 text-danger"(click)="deleteResource(resource)"><fa-icon [icon]="faTrash"></fa-icon></button>
-                <button class="btn btn-small p-1" (click)="editSimulation(resource)"><fa-icon [icon]="faEdit"></fa-icon></button> 
+                <button class="btn btn-small p-1" (click)="openDialog(resource)"><fa-icon [icon]="faEdit"></fa-icon></button> 
               </span>                              
         </td>
         <td mat-footer-cell *matFooterCellDef></td>

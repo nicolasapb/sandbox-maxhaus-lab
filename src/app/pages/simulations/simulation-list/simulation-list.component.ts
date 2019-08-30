@@ -9,6 +9,9 @@ import { Simulation } from '../shared/simulation.model';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Saving } from '../../savings/shared/saving.model';
 import { MatListOption } from '@angular/material/list';
+import { SimulationFormComponent } from '../simulation-form/simulation-form.component';
+import { MatDialog } from '@angular/material/dialog';
+import { SimulationDialogComponent } from '../simulation-dialog/simulation-dialog.component';
 
 export interface TotalAmount {
   type: string;
@@ -43,12 +46,15 @@ export class SimulationListComponent extends BaseResourceList<Simulation> implem
   public simulation: Simulation;
   public contractValue = 510381.00;
   public contractEntry = 118000.00;
+  // public showForm = false;
 
   constructor(
+    // protected formComponent: SimulationFormComponent,
     protected simulationService: SimulationService,
     protected savingService: SavingService,
-    protected snackBar: MatSnackBar) {
-    super(simulationService, snackBar);
+    protected snackBar: MatSnackBar,
+    protected dialog: MatDialog) {
+    super(simulationService, snackBar, dialog, SimulationDialogComponent, Simulation.fromJson);
   }
 
   ngOnInit(): void {
@@ -77,9 +83,10 @@ export class SimulationListComponent extends BaseResourceList<Simulation> implem
     return found.text;
   }
 
-  editSimulation(simulation: Simulation): void {
-    this.simulation = simulation;
-  }
+  // editSimulation(simulation: Simulation): void {
+  //   this.simulation = simulation;
+  //   this.showForm = true;
+  // }
 
   newSimulation(): void {
     const entry = this.totalCompostion + this.contractEntry;
@@ -88,6 +95,8 @@ export class SimulationListComponent extends BaseResourceList<Simulation> implem
     const fundingPct = 1 - entryPct;
     const renovation = this.prevTotal - this.totalCompostion;
     this.simulation = new Simulation(null, this.compostion, this.totalCompostion, entry, entryPct, funding, fundingPct, renovation);
+    this.openDialog(this.simulation);
+    // this.showForm = true;
   }
 
   protected getSavingsPrevision(): void {
