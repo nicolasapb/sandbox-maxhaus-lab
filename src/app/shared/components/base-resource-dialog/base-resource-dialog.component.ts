@@ -9,6 +9,34 @@ export abstract class BaseResourceDialogComponent<T extends BaseResourceModel> i
     public currentAction: string;
     public resourceForm: FormGroup;
     public pageTitle: string;
+    public imaskAmountConfig = {
+      mask: Number,
+      scale: 2,
+      thousandsSeparator: '.',
+      padFractionalZeros: true,
+      normalizeZeros: true,
+      radix: ','
+    };
+    public imaskPercentConfig = {
+      mask: Number,
+      scale: 2,
+      thousandsSeparator: '.',
+      padFractionalZeros: false,
+      normalizeZeros: true,
+      radix: ',',
+      min: 0,
+      max: 101
+    };
+    public imaskIntegerConfig = {
+      mask: Number,
+      scale: 0,
+      thousandsSeparator: '.',
+      padFractionalZeros: false,
+      normalizeZeros: true,
+      radix: ',',
+      min: 0,
+      max: 101
+    };
 
     protected formBuilder: FormBuilder;
 

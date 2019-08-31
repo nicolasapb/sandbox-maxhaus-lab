@@ -85,9 +85,9 @@ export class SimulationListComponent extends BaseResourceList<Simulation> implem
 
   newSimulation(): void {
     const entry = this.totalCompostion + this.contractEntry;
-    const entryPct = entry / this.contractValue;
+    const entryPct = (entry / this.contractValue) * 100;
     const funding = this.contractValue - entry;
-    const fundingPct = 1 - entryPct;
+    const fundingPct = 100 - entryPct;
     const renovation = this.prevTotal - this.totalCompostion;
     this.simulation = new Simulation(
       null, this.compostion, this.totalCompostion, entry, entryPct,

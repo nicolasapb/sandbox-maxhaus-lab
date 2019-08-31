@@ -15,6 +15,34 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
   public pageTitle: string;
   public serverErrorMessages: string[] = null;
   public submittingForm = false;
+  public imaskAmountConfig = {
+    mask: Number,
+    scale: 2,
+    thousandsSeparator: '.',
+    padFractionalZeros: true,
+    normalizeZeros: true,
+    radix: ','
+  };
+  public imaskPercentConfig = {
+    mask: Number,
+    scale: 2,
+    thousandsSeparator: '.',
+    padFractionalZeros: false,
+    normalizeZeros: true,
+    radix: ',',
+    min: 0,
+    max: 101
+  };
+  public imaskIntegerConfig = {
+    mask: Number,
+    scale: 0,
+    thousandsSeparator: '.',
+    padFractionalZeros: false,
+    normalizeZeros: true,
+    radix: ',',
+    min: 0,
+    max: 101
+  };
 
   protected route: ActivatedRoute;
   protected router: Router;

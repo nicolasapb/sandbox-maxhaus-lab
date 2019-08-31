@@ -22,11 +22,13 @@ import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 registerLocaleData(localePt);
 
+import {IMaskModule} from 'angular-imask';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CnpjPipe } from './pipes/cnpj.pipe';
 import { AccountPipe } from './pipes/account.pipe';
 import { PageHeaderComponent } from './components/page-header/page-header.component';
 import { FormFieldErrorComponent } from './components/form-field-error/form-field-error.component';
+
 
 @NgModule({
   declarations: [CnpjPipe, AccountPipe, PageHeaderComponent, FormFieldErrorComponent],
@@ -49,7 +51,8 @@ import { FormFieldErrorComponent } from './components/form-field-error/form-fiel
     MatSortModule,
     MatListModule,
     MatDividerModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    IMaskModule
   ],
   exports: [
     // Shared Modules
@@ -72,6 +75,7 @@ import { FormFieldErrorComponent } from './components/form-field-error/form-fiel
     MatListModule,
     MatDividerModule,
     MatSlideToggleModule,
+    IMaskModule,
 
     // Shared Components
     PageHeaderComponent,

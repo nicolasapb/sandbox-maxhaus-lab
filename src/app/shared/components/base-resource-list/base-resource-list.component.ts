@@ -11,7 +11,35 @@ import { BaseResourceService } from '../../services/base-resource.service';
 export abstract class BaseResourceList<T extends BaseResourceModel> implements OnInit, AfterViewInit {
 
   // resources: T[] = [];
-  resources: MatTableDataSource<T> ;
+  public resources: MatTableDataSource<T> ;
+  public imaskAmountConfig = {
+    mask: Number,
+    scale: 2,
+    thousandsSeparator: '.',
+    padFractionalZeros: true,
+    normalizeZeros: true,
+    radix: ','
+  };
+  public imaskPercentConfig = {
+    mask: Number,
+    scale: 2,
+    thousandsSeparator: '.',
+    padFractionalZeros: false,
+    normalizeZeros: true,
+    radix: ',',
+    min: 0,
+    max: 101
+  };
+  public imaskIntegerConfig = {
+    mask: Number,
+    scale: 0,
+    thousandsSeparator: '.',
+    padFractionalZeros: false,
+    normalizeZeros: true,
+    radix: ',',
+    min: 0,
+    max: 101
+  };
 
   @ViewChild(MatPaginator, {static: false}) paginator?: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort?: MatSort;
