@@ -46,8 +46,8 @@ export abstract class BaseResourceDialogComponent<T extends BaseResourceModel> i
     }
 
     protected onSave(): void {
-        const resourceFormValue: T = this.resourceForm.value;
-        this.dialogRef.close(resourceFormValue);
+      const resourceFormValue: T = this.resourceForm.value;
+      this.dialogRef.close(resourceFormValue);
     }
 
     protected setCurrentaction(): void {

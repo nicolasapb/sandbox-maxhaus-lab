@@ -16,6 +16,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {MatListModule} from '@angular/material/list';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
@@ -47,7 +48,8 @@ import { FormFieldErrorComponent } from './components/form-field-error/form-fiel
     MatPaginatorModule,
     MatSortModule,
     MatListModule,
-    MatDividerModule
+    MatDividerModule,
+    MatSlideToggleModule
   ],
   exports: [
     // Shared Modules
@@ -69,6 +71,7 @@ import { FormFieldErrorComponent } from './components/form-field-error/form-fiel
     MatSortModule,
     MatListModule,
     MatDividerModule,
+    MatSlideToggleModule,
 
     // Shared Components
     PageHeaderComponent,

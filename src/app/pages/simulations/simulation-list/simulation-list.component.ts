@@ -83,18 +83,16 @@ export class SimulationListComponent extends BaseResourceList<Simulation> implem
     return found.text;
   }
 
-  // editSimulation(simulation: Simulation): void {
-  //   this.simulation = simulation;
-  //   this.showForm = true;
-  // }
-
   newSimulation(): void {
     const entry = this.totalCompostion + this.contractEntry;
     const entryPct = entry / this.contractValue;
     const funding = this.contractValue - entry;
     const fundingPct = 1 - entryPct;
     const renovation = this.prevTotal - this.totalCompostion;
-    this.simulation = new Simulation(null, this.compostion, this.totalCompostion, entry, entryPct, funding, fundingPct, renovation);
+    this.simulation = new Simulation(
+      null, this.compostion, this.totalCompostion, entry, entryPct,
+      funding, fundingPct, renovation, null, false, true, null, null, null, null, null, new Date()
+      );
     this.openDialog(this.simulation);
     // this.showForm = true;
   }

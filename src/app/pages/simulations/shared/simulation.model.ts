@@ -14,6 +14,9 @@ export class Simulation extends BaseResourceModel {
     public fundFees?: boolean,
     public composeIncome?: boolean,
     public interest?: number,
+    public interestAM?: number,
+    public cet?: number,
+    public cesh?: number,
     public term?: number,
     public simDate?: Date
     ) {

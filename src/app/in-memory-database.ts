@@ -73,6 +73,9 @@ export class InMemoryDatabase implements InMemoryDbService {
               fundFees: false,
               composeIncome: true,
               interest: 7.99,
+              interestAM: 0.64,
+              cet: 8.60,
+              cesh: 2.4584,
               term: 35,
               simDate: new Date(2019, 6, 9)
             } as Simulation

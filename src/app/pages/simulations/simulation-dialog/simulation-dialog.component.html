@@ -1,66 +1,121 @@
 <mat-dialog-content class="p-0">
   <form [formGroup]="resourceForm" (submit)="submitForm()">   
-    <mat-card>
+    <mat-card class="w-auto">
         <button type="button" class="close" aria-label="Fechar" (click)="close()">
             <span aria-hidden="true">&times;</span>
         </button>        
-        <mat-card-header > 
+        <mat-card-header class="w-100"> 
             <mat-card-title ><app-page-header class="w-100" [page-title]="pageTitle" [show-button]="false"></app-page-header></mat-card-title>
         </mat-card-header>
-        <mat-card-content>
-            <div class="form-row">
-              
-              <!-- interest -->        
-              <div class="form-group col-md-2">
-                <mat-form-field class="w-100"> 
-                  <input matInput placeholder="Taxa de juros efetiva" required type="number" formControlName="interest"> 
-                </mat-form-field>                   
-                <app-form-field-error [form-control]="resourceForm.get('interest')"></app-form-field-error>
-              </div>   
+        <mat-card-content class="clearfix">
 
-              <!-- term -->        
-              <div class="form-group col-md-1">
-                <mat-form-field class="w-100"> 
-                  <input matInput placeholder="Prazo" required type="number" formControlName="term"> 
-                </mat-form-field>                   
-                <app-form-field-error [form-control]="resourceForm.get('term')"></app-form-field-error>
-              </div>         
-              
+          <div class="col-md-4 float-left">
+            <!-- interest row -->
+            <div class="form-row">   
               <!-- simDate -->
-              <div class="form-group col-md-2">
-                <mat-form-field class="w-100"> 
+              <div class="form-group col-md-5">
+                <mat-form-field class="w-100" [hideRequiredMarker]="true"> 
                   <input matInput [matDatepicker]="simDate" placeholder="Data da Simulação" required formControlName="simDate"> 
                   <mat-datepicker-toggle matSuffix [for]="simDate"></mat-datepicker-toggle>
                   <mat-datepicker #simDate></mat-datepicker>
                 </mat-form-field> 
                 <app-form-field-error [form-control]="resourceForm.get('simDate')"></app-form-field-error>
-              </div>               
-
+              </div>                  
+              
+              <!-- interest -->        
+              <div class="form-group col-md-3">
+                <mat-form-field class="w-100" [hideRequiredMarker]="true"> 
+                  <input matInput placeholder="%a.a." required type="number" formControlName="interest"> 
+                  <span matSuffix>&nbsp;%</span>
+                </mat-form-field>                   
+                <app-form-field-error [form-control]="resourceForm.get('interest')"></app-form-field-error>
+              </div>                                      
+              
+              <!-- interestAM -->        
+              <div class="form-group col-md-3">
+                <mat-form-field class="w-100" [hideRequiredMarker]="true"> 
+                  <input matInput placeholder="%a.m." required type="number" formControlName="interestAM"> 
+                  <span matSuffix>&nbsp;%</span>
+                </mat-form-field>                   
+                <app-form-field-error [form-control]="resourceForm.get('interestAM')"></app-form-field-error>
+              </div>              
             </div>
-
+            
+             <!-- interest row 2 -->
+            <div class="form-row"> 
+                <!-- cet -->        
+                <div class="form-group col-md-5">
+                  <mat-form-field class="w-100" [hideRequiredMarker]="true"> 
+                    <input matInput placeholder="Custo Efetivo Total (CET)" required type="number" formControlName="cet"> 
+                    <span matSuffix>&nbsp;%a.a.</span>
+                  </mat-form-field>                   
+                  <app-form-field-error [form-control]="resourceForm.get('cet')"></app-form-field-error>
+                </div>  
+  
+                <!-- cesh -->        
+                <div class="form-group col-md-3">
+                  <mat-form-field class="w-100" [hideRequiredMarker]="true"> 
+                    <input matInput placeholder="CESH" required type="number" formControlName="cesh"> 
+                    <span matSuffix>&nbsp;%a</span>
+                  </mat-form-field>                   
+                  <app-form-field-error [form-control]="resourceForm.get('cesh')"></app-form-field-error>
+                </div>     
+  
+                <!-- term -->        
+                <div class="form-group col-md-3">
+                  <mat-form-field class="w-100" [hideRequiredMarker]="true"> 
+                    <input matInput placeholder="Prazo" required type="number" formControlName="term"> 
+                    <span matSuffix>&nbsp;anos</span>
+                  </mat-form-field>                   
+                  <app-form-field-error [form-control]="resourceForm.get('term')"></app-form-field-error>
+                </div>  
+            </div>
+            
+            <!-- funding options -->
             <div class="form-row">
+              <!-- fundFees -->        
+              <div class="form-group col-md-12">
+                  <mat-slide-toggle [checked]="resourceForm.get('fundFees')" formControlName="fundFees">Financiar Taxas</mat-slide-toggle>
+                <app-form-field-error [form-control]="resourceForm.get('fundFees')"></app-form-field-error>
+              </div>  
+            </div>
+              
+            <div class="form-row">
+              <!-- composeIncome -->        
+              <div class="form-group col-md-12">
+                <mat-slide-toggle [checked]="resourceForm.get('composeIncome')" formControlName="composeIncome">Compor Renda</mat-slide-toggle>
+                <app-form-field-error [form-control]="resourceForm.get('composeIncome')"></app-form-field-error>
+              </div>                  
+            </div>
+              
+          </div>
 
+          <div class="col-md-8 float-left">
+
+            <!-- compostion row -->
+            <div class="form-row">
               <!-- composition -->        
-              <div class="form-group col-md-6">
-                <mat-form-field class="w-100"> 
+              <div class="form-group col-md-8">
+                <mat-form-field class="w-100" [hideRequiredMarker]="true"> 
                   <input matInput placeholder="Composição" required formControlName="composition"> 
                 </mat-form-field>                   
                 <app-form-field-error [form-control]="resourceForm.get('composition')"></app-form-field-error>
               </div>    
 
               <!-- total -->        
-              <div class="form-group col-md-2">
-                <mat-form-field class="w-100"> 
+              <div class="form-group col-md-3">
+                <mat-form-field class="w-100" [hideRequiredMarker]="true"> 
                   <input matInput placeholder="Total" required formControlName="total" [value]="resourceForm.get('total').value | currency:'BRL':'symbol':'0.2-2':'pt'"> 
                 </mat-form-field>                   
                 <app-form-field-error [form-control]="resourceForm.get('total')"></app-form-field-error>
               </div>  
-            </div>
+            </div>            
             
-            <div class="form-row">
+            <!-- entry row -->
+            <div class="form-row"> 
               <!-- entry -->        
-              <div class="form-group col-md-2">
-                <mat-form-field class="w-100"> 
+              <div class="form-group col-md-3">
+                <mat-form-field class="w-100" [hideRequiredMarker]="true"> 
                   <input matInput placeholder="Entrada" required formControlName="entry" [value]="resourceForm.get('entry').value | currency:'BRL':'symbol':'0.2-2':'pt'"> 
                 </mat-form-field>                   
                 <app-form-field-error [form-control]="resourceForm.get('entry')"></app-form-field-error>
@@ -68,15 +123,15 @@
               
               <!-- entryPct -->        
               <div class="form-group col-md-1">
-                <mat-form-field class="w-100"> 
+                <mat-form-field class="w-100" [hideRequiredMarker]="true"> 
                   <input matInput placeholder="% Entrada" required formControlName="entryPct" [value]="resourceForm.get('entryPct').value | percent"> 
                 </mat-form-field>                   
                 <app-form-field-error [form-control]="resourceForm.get('entryPct')"></app-form-field-error>
               </div>   
               
               <!-- funding -->        
-              <div class="form-group col-md-2">
-                <mat-form-field class="w-100"> 
+              <div class="form-group col-md-3">
+                <mat-form-field class="w-100" [hideRequiredMarker]="true"> 
                   <input matInput placeholder="Financiamento" required formControlName="funding" [value]="resourceForm.get('funding').value | currency:'BRL':'symbol':'0.2-2':'pt'"> 
                 </mat-form-field>                   
                 <app-form-field-error [form-control]="resourceForm.get('funding')"></app-form-field-error>
@@ -84,49 +139,35 @@
               
               <!-- fundingPct -->        
               <div class="form-group col-md-1">
-                <mat-form-field class="w-100"> 
+                <mat-form-field class="w-100" [hideRequiredMarker]="true"> 
                   <input matInput placeholder="% Financiamento" required formControlName="fundingPct" [value]="resourceForm.get('fundingPct').value | percent"> 
                 </mat-form-field>                   
                 <app-form-field-error [form-control]="resourceForm.get('fundingPct')"></app-form-field-error>
               </div>   
               
               <!-- renovation -->        
-              <div class="form-group col-md-2">
-                <mat-form-field class="w-100"> 
+              <div class="form-group col-md-3">
+                <mat-form-field class="w-100" [hideRequiredMarker]="true"> 
                   <input matInput placeholder="Reforma" required formControlName="renovation" [value]="resourceForm.get('renovation').value | currency:'BRL':'symbol':'0.2-2':'pt'"> 
                 </mat-form-field>                   
                 <app-form-field-error [form-control]="resourceForm.get('renovation')"></app-form-field-error>
               </div>               
+            </div>   
 
-            </div>
-
+            <!-- installment row -->
             <div class="form-row">
               <!-- installment -->        
-              <div class="form-group col-md-2">
+              <div class="form-group col-md-3">
                 <mat-form-field class="w-100"> 
                   <input matInput placeholder="Vl. 1a. Parcela" required formControlName="installment" type="number"> 
+                  <span matPrefix>R$&nbsp;</span>
                 </mat-form-field>                   
                 <app-form-field-error [form-control]="resourceForm.get('installment')"></app-form-field-error>
-              </div>   
-
-              <!-- fundFees -->        
-              <div class="form-group col-md-2">
-                <mat-form-field class="w-100"> 
-                  <input matInput placeholder="Financiar Taxas" required formControlName="fundFees"> 
-                </mat-form-field>                   
-                <app-form-field-error [form-control]="resourceForm.get('fundFees')"></app-form-field-error>
-              </div>  
-               
-              <!-- composeIncome -->        
-              <div class="form-group col-md-2">
-                <mat-form-field class="w-100"> 
-                  <input matInput placeholder="Compor Renda" required formControlName="composeIncome" > 
-                </mat-form-field>                   
-                <app-form-field-error [form-control]="resourceForm.get('composeIncome')"></app-form-field-error>
-              </div>                
-              
+              </div>            
             </div>
-
+            
+          </div>
+                     
         </mat-card-content>
         <mat-card-actions class="text-right">
           <button type="submit" class="btn btn-warning btn-lg" [disabled]="submittingForm || resourceForm.invalid">
