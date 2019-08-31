@@ -55,7 +55,8 @@
         <!-- amount -->
         <div class="form-group col-md-4" >
           <mat-form-field class="w-100" >
-            <input matInput placeholder="Valor" required formControlName="amount" type="number">
+            <input matInput placeholder="Valor" required formControlName="amount" [imask]="imaskAmountConfig" [unmask]="true">  
+            <span matPrefix>R$&nbsp;</span>
           </mat-form-field>            
           <app-form-field-error [form-control]="resourceForm.get('amount')"></app-form-field-error>
         </div>

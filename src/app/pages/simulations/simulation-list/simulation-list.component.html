@@ -86,7 +86,7 @@
     
     <ng-container matColumnDef="entryPct">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> % </th>
-      <td mat-cell *matCellDef="let resource"> {{resource.entryPct | percent }} </td>
+      <td mat-cell *matCellDef="let resource"> {{resource.entryPct | number:'0.2-2':'pt' }} </td>
       <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
     
@@ -98,7 +98,7 @@
     
     <ng-container matColumnDef="fundingPct">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> % </th>
-      <td mat-cell *matCellDef="let resource"> {{resource.fundingPct | percent }} </td>
+      <td mat-cell *matCellDef="let resource"> {{resource.fundingPct | number:'0.2-2':'pt' }} </td>
       <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
@@ -132,7 +132,11 @@
       <div class="resource-detail"
            [@detailExpand]="resource == expandedresource ? 'expanded' : 'collapsed'">
           <p class="resource-description">
-              Data da simulação: <span class="font-weight-bold">{{ resource.simDate | date:"dd/MM/yyyy"}}</span> | Taxa de juros efetiva com bonificação: <span class="font-weight-bold">{{ resource.interest | number:'0.2-2':'pt'}}</span> % a.a. 0,64 % a.m. + TR | Custo Efetivo Total (CET) com bonificação: 8,60 % a.a. | Custo Efetivo do Seguro Habitacional (CESH): 2,4584 % | Prazo: <span class="font-weight-bold">{{ resource.term }}</span> anos																		
+              Data da simulação: <span class="font-weight-bold">{{ resource.simDate | date:"dd/MM/yyyy"}}</span> 
+              | Taxa de juros efetiva com bonificação: <span class="font-weight-bold">{{ resource.interest | number:'0.2-2':'pt'}}</span> % a.a. <span class="font-weight-bold">{{ resource.interestAM | number:'0.2-2':'pt'}}</span>% a.m. + TR 
+              | Custo Efetivo Total (CET) com bonificação: <span class="font-weight-bold">{{ resource.cet | number:'0.2-2':'pt'}}</span> % a.a. 
+              | Custo Efetivo do Seguro Habitacional (CESH): <span class="font-weight-bold">{{ resource.cesh | number:'0.2-2':'pt'}}</span>% 
+              | Prazo: <span class="font-weight-bold">{{ resource.term }}</span> anos																		
           </p>
       </div>
     </td>
