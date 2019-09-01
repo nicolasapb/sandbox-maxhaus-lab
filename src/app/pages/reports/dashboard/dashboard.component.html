@@ -1,33 +1,37 @@
 <app-page-header class="w-100" page-title="Dashboard" [show-button]="false"></app-page-header> 
-<div class="form-row mb-4">
+<div class="form-row mb-2">
     <div class="form-group col-md-12">
         <app-progress-bar [entryValue]="entryValue" [singleValue]="singleValue" [monthlyValue]="monthlyValue"></app-progress-bar>
     </div>
 </div>
 
-<div class="clearfix bg-dark mb-5">
-    <div class="float-left col-md-5 w-100">
+<div class="clearfix mb-5">
+    <div class="w-100">
         <div class="form-row">
-            <div class="form-group w-100 mt-2">
+            <div class="col-md-6 form-group w-100">
                 <app-summary></app-summary>
             </div>
-        </div>
-        
-        <div class="form-row">
-            <div class="form-group w-100">
-                <h1 class="bg-info">Parcela Unica</h1>
-            </div>
-        </div>
-        
-        <div class="form-row">
-            <div class="form-group w-100">
-                <h1 class="bg-secondary">Parcelas Mensais</h1>
-            </div>
+
+            <div class="col-md-6 form-group w-100">
+                <div>
+                    <app-single-intallment 
+                        *ngIf="singleInstallment.length > 0" 
+                        title="Savings Parcela Única" 
+                        [singleInstallment]="singleInstallment">
+                    </app-single-intallment>
+                </div>
+                <div class="mt-2">
+                    <app-single-intallment 
+                        *ngIf="monthlyInstallment.length > 0" 
+                        title="Parcelas" 
+                        [singleInstallment]="monthlyInstallment">
+                    </app-single-intallment>
+                </div>
+            </div>       
         </div>
     </div>    
 
-
-    <div class="float-left col-md-7 w-100">
+    <div class="w-100 mt-2">
         <div class="form-row">
             <div class="form-group w-100 mt-2">
                 <h1 class="bg-warning">Grafico</h1>
