@@ -58,11 +58,14 @@ export class DashboardComponent implements OnInit {
     this.singleValue = this.calculatePaymentPct('2', this.singleContract);
 
     const target = 32500.00;
-    const total = this.payments.filter( payment => payment.type === '1' )
+    let total = 0;
+    total = payments.filter( payment => payment.type === '1' )
       .reduce( (sum, payment) => sum + payment.amount, 0);
     const needs = (target - total) < 0 ? 0 : target - total ;
     const needsPct = this.monthlyValue;
     const totalPct = 100 - needsPct;
+
+    console.log(payments, total);
 
     this.monthlyInstallment.push({
       total,

@@ -9,7 +9,7 @@
 
         <div>
             <mat-progress-bar 
-                class="mb-4"
+                class="mb-3"
                 [color]="setColor()"
                 [value]="singleInstallment[0].totalPct">
             </mat-progress-bar>
@@ -40,5 +40,13 @@
             <tr mat-header-row *matHeaderRowDef="cols"></tr>
             <tr mat-row *matRowDef="let row; columns: cols;"></tr>
         </table>
+
+        <div class="text-right mt-3">
+            <button 
+                class="btn btn-sm btn-warning" 
+                [routerLink]="route">
+                <fa-icon [icon]="faPlus"></fa-icon>&nbsp;{{ buttonText }}
+            </button>
+        </div>
     </mat-card-content>
 </mat-card>

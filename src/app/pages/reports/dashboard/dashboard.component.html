@@ -17,6 +17,8 @@
                     <app-single-intallment 
                         *ngIf="singleInstallment.length > 0" 
                         title="Savings Parcela Única" 
+                        buttonText="nova economia"
+                        route="/savings/new"
                         [singleInstallment]="singleInstallment">
                     </app-single-intallment>
                 </div>
@@ -24,6 +26,8 @@
                     <app-single-intallment 
                         *ngIf="monthlyInstallment.length > 0" 
                         title="Parcelas" 
+                        buttonText="novo pagamento"
+                        route="/payments/new"
                         [singleInstallment]="monthlyInstallment">
                     </app-single-intallment>
                 </div>

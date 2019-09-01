@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 export interface SingleInstallmentSavings {
   total: number;
@@ -18,6 +19,10 @@ export class SingleIntallmentComponent {
   public cols = ['total', 'needs', 'totalPct', 'needsPct', 'target'];
   @Input() singleInstallment: SingleInstallmentSavings[];
   @Input() title: string;
+  @Input() route: string;
+  @Input() buttonText: string;
+
+  public faPlus = faPlus;
 
   constructor() { }
 

@@ -121,7 +121,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
 
   protected createResource(): void {
     const resource: T = this.jsonDataToResourceFn(this.resourceForm.value);
-
+    console.log(this.resourceForm.value);
     this.resourceService.create(resource)
       .subscribe({
         next: newResource => this.actionsForSuccess(newResource),
