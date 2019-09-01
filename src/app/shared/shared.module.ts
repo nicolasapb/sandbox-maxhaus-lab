@@ -24,6 +24,7 @@ import { registerLocaleData } from '@angular/common';
 registerLocaleData(localePt);
 
 import { IMaskModule } from 'angular-imask';
+import { ChartsModule } from 'ng2-charts';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CnpjPipe } from './pipes/cnpj.pipe';
 import { AccountPipe } from './pipes/account.pipe';
@@ -54,7 +55,8 @@ import { FormFieldErrorComponent } from './components/form-field-error/form-fiel
     MatDividerModule,
     MatSlideToggleModule,
     MatProgressBarModule,
-    IMaskModule
+    IMaskModule,
+    ChartsModule
   ],
   exports: [
     // Shared Modules
@@ -79,6 +81,7 @@ import { FormFieldErrorComponent } from './components/form-field-error/form-fiel
     MatSlideToggleModule,
     MatProgressBarModule,
     IMaskModule,
+    ChartsModule,
 
     // Shared Components
     PageHeaderComponent,

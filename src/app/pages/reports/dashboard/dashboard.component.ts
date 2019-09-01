@@ -65,8 +65,6 @@ export class DashboardComponent implements OnInit {
     const needsPct = this.monthlyValue;
     const totalPct = 100 - needsPct;
 
-    console.log(payments, total);
-
     this.monthlyInstallment.push({
       total,
       target,
