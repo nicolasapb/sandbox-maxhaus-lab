@@ -1,0 +1,32 @@
+<mat-list>
+    <mat-list-item>
+        <span class="col-md-2 pl-0 text-right font-weight-bold">Entrada:&nbsp;</span>
+        <mat-progress-bar
+            class="mb-1 h-25 col-md-10 pl-0"
+            [color]="setColor(entryValue)"
+            [value]="entryValue">
+        </mat-progress-bar>        
+    </mat-list-item> 
+
+    <mat-list-item>
+        <span class="col-md-2 pl-0 text-right font-weight-bold">Parcela única:&nbsp;</span>
+        <mat-progress-bar
+            class="mb-1 h-25 col-md-10 pl-0"
+            [color]="setColor(singleValue)"
+            [value]="singleValue">
+        </mat-progress-bar>        
+    </mat-list-item>
+
+    <mat-list-item>
+        <span class="col-md-2 pl-0 text-right font-weight-bold">Mensais:&nbsp;</span>
+        <mat-progress-bar
+            class="mb-1 h-25 col-md-10 pl-0"
+            [color]="setColor(monthlyValue)"
+            [value]="monthlyValue">
+        </mat-progress-bar>        
+    </mat-list-item>
+</mat-list>
+
+
+
+

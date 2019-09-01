@@ -1,0 +1,38 @@
+<app-page-header class="w-100" page-title="Dashboard" [show-button]="false"></app-page-header> 
+<div class="form-row mb-4">
+    <div class="form-group col-md-12">
+        <app-progress-bar [entryValue]="entryValue" [singleValue]="singleValue" [monthlyValue]="monthlyValue"></app-progress-bar>
+    </div>
+</div>
+
+<div class="clearfix bg-dark">
+    <div class="float-left col-md-5 w-100 bg-danger">
+        <div class="form-row ">
+            <div class="form-group w-100">
+                <h1 class="bg-warning">Resumo</h1>
+            </div>
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group w-100">
+                <h1 class="bg-info">Parcela Unica</h1>
+            </div>
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group w-100">
+                <h1 class="bg-secondary">Parcelas Mensais</h1>
+            </div>
+        </div>
+    </div>    
+
+
+    <div class="float-left col-md-7 w-100 bg-success">
+        <div class="form-row ">
+            <div class="form-group w-100">
+                <h1 class="bg-warning">Grafico</h1>
+            </div>
+        </div>
+    </div>        
+</div>
+

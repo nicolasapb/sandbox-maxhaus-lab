@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faHome, faFileInvoiceDollar, faFlask, faPiggyBank } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faFileInvoiceDollar, faFlask, faPiggyBank, faChartPie } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-nav-bar',
@@ -12,6 +12,7 @@ export class NavBarComponent implements OnInit {
   public faFileInvoiceDollar = faFileInvoiceDollar;
   public faFlask = faFlask;
   public faPiggyBank = faPiggyBank;
+  public faChartPie = faChartPie;
   constructor() { }
 
   ngOnInit() {
