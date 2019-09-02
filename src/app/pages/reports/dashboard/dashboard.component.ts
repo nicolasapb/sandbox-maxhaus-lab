@@ -60,10 +60,10 @@ export class DashboardComponent implements OnInit {
     const target = 32500.00;
     let total = 0;
     total = payments.filter( payment => payment.type === '1' )
-      .reduce( (sum, payment) => sum + payment.amount, 0);
+      .reduce( (sum, payment) => sum + +payment.amount, 0);
     const needs = (target - total) < 0 ? 0 : target - total ;
-    const needsPct = this.monthlyValue;
-    const totalPct = 100 - needsPct;
+    const needsPct = 100 - this.monthlyValue;
+    const totalPct = this.monthlyValue;
 
     this.monthlyInstallment.push({
       total,
@@ -76,7 +76,7 @@ export class DashboardComponent implements OnInit {
 
   protected calculatePaymentPct(type: string, contractValue: number): number {
     const entryAmount = this.payments.filter( payment => payment.type === type)
-      .reduce( (total, payment) => total + payment.amount, 0);
+      .reduce( (total, payment) => total + +payment.amount, 0);
 
     let value = entryAmount / contractValue;
 
@@ -92,7 +92,7 @@ export class DashboardComponent implements OnInit {
 
     const target = 25500.00;
     const total = this.savings.filter( saving => saving.type === 'PP' && saving.simulation === false )
-      .reduce( (sum, saving) => sum + saving.amount, 0);
+      .reduce( (sum, saving) => sum + +saving.amount, 0);
     const needs = (target - total) < 0 ? 0 : target - total ;
     const needsPct = (needs / total) * 100;
     const totalPct = 100 - needsPct;
