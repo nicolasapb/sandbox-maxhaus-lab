@@ -57,13 +57,13 @@ export class SavingListComponent extends BaseResourceList<Saving> {
     this.realTotalByType = [];
     this.realTotal = 0;
     this.sumByTypeAndSimulationValue(this.realTotalByType, false);
-    this.realTotal = this.realTotalByType.reduce( (val, entry) => val + entry.amount, 0 );
+    this.realTotal = this.realTotalByType.reduce( (val, entry) => val + +entry.amount, 0 );
   }
 
   protected buildPrevTotal(): void {
     this.prevTotalByType = [];
     this.sumByTypeAndSimulationValue(this.prevTotalByType, true);
-    this.prevTotal = this.prevTotalByType.reduce( (val, entry) => val + entry.amount, 0 );
+    this.prevTotal = this.prevTotalByType.reduce( (val, entry) => val + +entry.amount, 0 );
   }
 
   protected sumByTypeAndSimulationValue(totalByType: Array<TotalAmount>, simValue: boolean) {
@@ -71,13 +71,13 @@ export class SavingListComponent extends BaseResourceList<Saving> {
 
     this.resources.data.filter(resource => resource.simulation === simValue)
       .map(resource => {
-        return { type: this.getTypeText(resource.type), amount: resource.amount };
+        return { type: this.getTypeText(resource.type), amount: +resource.amount };
       })
       .forEach(entry => {
         if (!sum[entry.type]) {
           sum[entry.type] = 0;
         }
-        sum[entry.type] += entry.amount;
+        sum[entry.type] += +entry.amount;
       });
 
     Object.keys(sum).forEach(key => {

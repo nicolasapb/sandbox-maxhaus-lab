@@ -61,13 +61,13 @@ export class EconomiesChartComponent implements OnInit {
 
         savings.filter( saving => !saving.simulation )
         .map(saving => {
-          return { type: this.getTypeText(saving.type), amount: saving.amount };
+          return { type: this.getTypeText(saving.type), amount: +saving.amount };
         })
         .forEach(entry => {
           if (!sum[entry.type]) {
             sum[entry.type] = 0;
           }
-          sum[entry.type] += entry.amount;
+          sum[entry.type] += +entry.amount;
         });
 
         Object.keys(sum).forEach(key => {

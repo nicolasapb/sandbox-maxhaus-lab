@@ -67,7 +67,7 @@ export class SimulationListComponent extends BaseResourceList<Simulation> implem
     this.compostion = '';
     selectedValues.forEach( selection => {
       this.compostion = this.compostion.concat( this.compostion === '' ? '' : ' + ', selection.value.type);
-      this.totalCompostion += selection.value.amount;
+      this.totalCompostion += +selection.value.amount;
     });
   }
 
@@ -112,7 +112,7 @@ export class SimulationListComponent extends BaseResourceList<Simulation> implem
   protected buildPrevTotal(): void {
     this.prevTotalByType = [];
     this.sumByTypeAndSimulationValue(this.prevTotalByType, true);
-    this.prevTotal = this.prevTotalByType.reduce( (val, entry) => val + entry.amount, 0 );
+    this.prevTotal = this.prevTotalByType.reduce( (val, entry) => val + +entry.amount, 0 );
   }
 
   protected sumByTypeAndSimulationValue(totalByType: Array<TotalAmount>, simValue: boolean) {
@@ -120,13 +120,13 @@ export class SimulationListComponent extends BaseResourceList<Simulation> implem
 
     this.savings.filter(saving => saving.simulation === simValue)
       .map(saving => {
-        return { type: this.getTypeText(saving.type), amount: saving.amount };
+        return { type: this.getTypeText(saving.type), amount: +saving.amount };
       })
       .forEach(entry => {
         if (!sum[entry.type]) {
           sum[entry.type] = 0;
         }
-        sum[entry.type] += entry.amount;
+        sum[entry.type] += +entry.amount;
       });
 
     Object.keys(sum).forEach(key => {
